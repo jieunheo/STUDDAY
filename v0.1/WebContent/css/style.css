@@ -1,5 +1,6 @@
 /* 초기화 */
-html, body, h1, h2, h3, h4, h5, h6, a, p, div, ul, li {
+html, body, h1, h2, h3, h4, h5, h6,
+a, p, div, ul, li, input, form, textarea {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -17,10 +18,14 @@ a {
 	font-size: inherit;
 }
 
-input[type=button],
-input[type=submit] {
+input, textarea {
 	border: none;
 	outline: 0;
+}
+
+input[type=button],
+input[type=submit] {
+	cursor: pointer;
 }
 
 .wrap {
@@ -48,13 +53,20 @@ input[type=submit] {
 	background: #84A1B3;
 }
 
+/****** header ******/
 /* header */
 header {
-	height: 70px;
+	height: 80px;
 	width: 100%;
 	position: relative;
 }
 
+header .wrap {
+	height: 80px;
+	position: relative;
+}
+
+/* logo */
 .logo {
 	width: 200px;
 	height: 60px;
@@ -68,24 +80,31 @@ header {
 	height: 100%;
 	background: url('../img/logo.png') no-repeat center center ;
 	background-size: cover;
-	
-	font-size: 14px;
 }
 
+/* login */
 .login {
 	position: absolute;
 	top: 10px;
-	right: 0;
+	right: 10px;
+	font-size: 14px;
 }
 
+.login a:hover {
+	color: #556773;
+}
+
+/* nav */
 .nav {
 	position: absolute;
-	top: 40px;
+	top: 50px;
 	left: 50%;
   transform: translate(-50%, -50%);
   
-  font-size: 20px;
+  font-size: 18px;
 	font-weight: bold;
+	
+	z-index: 999;
 }
 
 .nav li {
@@ -97,22 +116,57 @@ header {
 	border-bottom: 3px solid #fff;
 }
 
-.nav a:hover {
+.nav li:hover > a {
 	color: #0973BA;
 	border-bottom: 3px solid #0973BA;
 }
 
-/* main */
+.nav li:hover > .sub_nav {
+	display: block;
+}
+
+.nav > ul > li {
+	position: relative;
+}
+
+.sub_nav {
+	display: none;
+	position: absolute;
+	left: 50%;
+  transform: translate(-50%, 0);
+	
+  font-size: 16px;
+  text-align: center;
+  
+  background: #fff;
+  padding: 0 5px 5px;
+}
+
+.sub_nav li {
+	display: block;
+}
+
+/****** main ******/
+/* banner */
 .banner {
 	position: relative;
+	height: 500px;
 	background: #556773;
-	height: 450px;
+	margin-bottom: 100px;
 	
 	text-align: center;
 	color: #fff;
+	
+	z-index: 1;
 }
 
-.banner .text {
+.banner .wrap {
+	height: 100%;
+	background: url("../img/banner.jpg") no-repeat center center;
+	background-size: cover;
+}
+
+.banner .wrap > div {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -132,6 +186,300 @@ h2 {
 	line-height: 24px;
 }
 
+.banner .title {
+	margin-bottom: 20px;
+}
+
 .b_btn {
 	display: inline-block;
+	font-weight: bold;
+}
+
+.b_btn a {
+	border: 2px solid #fff;
+	padding: 10px 40px;
+	border-radius: 17px;
+	
+	z-index: 999;
+}
+
+.b_btn a:hover { 
+	background: #fff;
+	color: #556773;
+}
+
+/* icons */
+.icons {
+	max-width: 1250px;
+	width: 85%;
+	margin: 0 auto;
+	text-align: center;
+	
+	margin-bottom: 82px;
+}
+
+.icon {
+	position: relative;
+	
+	display: inline-block;
+	width: 160px;
+	height: 160px;
+	border-radius: 80px;
+	background: #556773;
+	margin: 0 18px 18px;
+	
+	color: #fff;
+	font-weight: bold;
+}
+
+.icon:hover {
+	background: #8fa2ad;
+}
+
+.icon img {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	top: 30px;
+	left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.icon p {
+	position: absolute;
+	left: 50%;
+  transform: translate(-50%, -50%);
+	bottom: 10px;
+}
+
+/* study list */
+.study_list {
+	width: 100%;
+	background: #e3ebf0;
+	text-align: center;
+	
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+	font-weight: bold;
+}
+
+.text {
+	color: #556773;
+	margin-bottom: 30px;
+}
+
+.before_btn, .after_btn {
+  position:relative;
+  width:30px;
+  height:50px;
+  /*text-indent:-9999px;*/
+  text-indent: 100%;    
+  white-space: nowrap;    
+  overflow: hidden;
+	
+	z-index: 999;
+}
+
+.before_btn {
+	top: 150px;
+	left: -42%;
+}
+
+.after_btn {
+	top: -150px;
+	left: 42%;
+}
+
+.before_btn:before, .after_btn:before {
+  content:'';
+  width:16px;
+  height:16px;
+  position:absolute;
+  top:16px;
+  border-left:3px solid #fff;
+  border-top:3px solid #fff;
+}
+
+.before_btn:before {
+  left:20px;
+  transform:translateX(-50%) rotate(-45deg);
+}
+
+.after_btn:before {
+  left:10px;
+  transform:translateX(-50%) rotate(135deg);
+}
+
+.overflow {
+	max-width: 1000px;
+	height: 240px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.overflow ul {
+	position: absolute;
+	width: 2000px;
+	top: 0;
+	left: 0;
+}
+
+.before_btn:hover + .overflow ul {
+	left: -980px;
+	transition-property: left;
+	transition-duration: 8s;
+}
+
+.item {
+	width: 200px;
+	height: 240px;
+	background: #fff;
+	
+	margin: 0 20px;
+}
+
+.item .thumb {
+	width: 160px;
+	height: 160px;
+	background: #556773;
+	margin: 20px 20px 16px 20px;
+}
+
+.item p {
+	margin-left: 20px;
+}
+
+/*** 슬라이드 예시! 슬라이드 성공시 지움 ***/
+.item a:hover {
+	background: rgba(0, 0, 0, 0.2);
+}
+/*******************************/
+
+h3 {
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+.item a {
+	width: 100%;
+	height: 100%;
+}
+
+.item p {
+	text-align: left;
+}
+
+/* request */
+.request {
+	width: 100%;
+	text-align: center;
+	
+	padding-top: 50px;
+
+	font-weight: bold;
+}
+
+.form {
+	max-width: 850px;
+	margin: 0 auto 100px;
+	padding: 30px;
+	
+	background: #e3ebf0;
+}
+
+.form input {
+	max-width: 550px;
+	width: 90%;
+	min-width: 200px;
+	height: 30px;
+	margin-bottom: 10px;
+	padding: 0 10px;
+}
+
+.form textarea {
+	max-width: 550px;
+	width: 90%;
+	min-width: 200px;
+	height: 280px;
+	margin-bottom: 10px;
+	padding: 10px;
+  resize: none;
+}
+
+.form input[type=button] {
+	height: 40px;
+	background: #556773;
+	color: #fff;
+	font-weight: bold;
+}
+
+.form input[type=button]:hover {
+	background: #0973ba;
+}
+
+/* to top */
+.to_top {
+  position:fixed;
+  bottom:16px;
+  right:20px;
+  
+  width:50px;
+  height:50px;
+  border-radius: 10px;
+  text-indent: 100%;    
+  white-space: nowrap;    
+  overflow: hidden;
+  background: #0973ba;
+	
+	z-index: 999;
+}
+
+.to_top:before {
+  content:'';
+  width:16px;
+  height:16px;
+  position:absolute;
+  top:20px;
+  left:25px;
+  border-left:3px solid #fff;
+  border-top:3px solid #fff;
+  transform:translateX(-50%) rotate(45deg);
+}
+
+/* footer */
+footer {
+	background: #556773;
+	color: #fff;
+}
+
+footer .wrap {
+	position: relative;
+	padding: 25px 20px;
+}
+
+footer p {
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 5px;
+}
+
+footer small {
+	font-size: 14px;
+}
+
+.f_logo {
+	width: 280px;
+	height: 70px;
+	position: absolute;
+	bottom: 20px;
+	right: 0;
+}
+
+.f_logo a {
+	width: 100%;
+	height: 100%;
+	background: url('../img/f_logo.png') no-repeat center center ;
+	background-size: cover;
 }

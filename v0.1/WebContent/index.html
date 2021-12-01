@@ -6,9 +6,9 @@
 		<link href="./css/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="wrap">
-			<header class="clearfix">
-				<h1 class="logo"><a href="index.jsp"></a></h1>
+		<header class="clearfix">
+			<div class="wrap">
+				<h1 class="logo"><a href="index.html"></a></h1>
 				<div class="login">
 					<a href="join.html">JOIN</a>&nbsp;|&nbsp;
 					<a href="login.html">LOGIN</a>
@@ -16,27 +16,164 @@
 				<div class="nav">
 					<ul>
 						<li><a href="#">How To</a></li>
-						<li><a href="#">Study</a></li>
+						<li>
+							<a href="#">Study</a>
+							<ul class="sub_nav">
+								<li><a href="#">With Us</a></li>
+								<li><a href="#">Lecture</a></li>
+								<li><a href="#">Reference</a></li>
+								<li><a href="#">Tip</a></li>
+								<li><a href="#">Q&A</a></li>
+							</ul>
+						</li>
 						<li><a href="#">Talk</a></li>
-						<li><a href="#">Contact</a></li>
+						<li>
+							<a href="#">Contact</a>
+							<ul class="sub_nav">
+								<li><a href="#">Notice</a></li>
+								<li><a href="#">Request</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
-			</header>
-			<div class="main">
-				<div class="banner">
-					<div class="text">
-						<h2>WELCOME STUDDAY</h2>
-						<p>혼자 하기 버거운 공부를 함께 하는 공간</p>
-						<p>오늘도 공부하는 날 :)</p>
-					</div>
-					<div class="b_btn">
-						<a href="login.html">동료 만들기</a>
+			</div>
+		</header>
+		<div class="main">
+			<div class="banner">
+				<div class="wrap">
+					<div>
+						<div class="title">
+							<h2>WELCOME STUDDAY</h2>
+							<p>혼자 하기 버거운 공부를 함께 하는 공간</p>
+							<p>오늘도 공부하는 날 :)</p>
+						</div>
+						<div class="b_btn">
+							<a href="login.html">동료 만들기</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<footer>
-				
-			</footer>
+			
+			<div class="icons">
+				<div class="wrap">
+					<a class="icon" href="#">
+						<img alt="How To" src="./img/icon_how.png">
+						<p>How To</p>
+					</a>
+					<a class="icon" href="#">
+						<img alt="How To" src="./img/icon_ref.png">
+						<p>Ref</p>
+					</a>
+					<a class="icon" href="#">
+						<img alt="How To" src="./img/icon_tip.png">
+						<p>Tip</p>
+					</a>
+					<a class="icon" href="#">
+						<img alt="How To" src="./img/icon_qa.png">
+						<p>Q&A</p>
+					</a>
+					<a class="icon" href="#">
+						<img alt="How To" src="./img/icon_notice.png">
+						<p>Notice</p>
+					</a>
+				</div>
+			</div>
+			
+			<div class="study_list">
+				<div class="wrap">
+					<div class="text">
+						<h3>With Us</h3>
+						<p>마음에 드는 스터디를 찾아 함께 해보세요 :)</p>
+					</div>
+					<div>
+						<a class="before_btn" href="#"></a>
+						<div class="overflow">
+							<ul>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>1스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>2스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>3스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>4스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>5스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>6스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>7스터디원 구합니다.</p>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<div class="thumb"></div>
+										<p>8스터디원 구합니다.</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<a class="after_btn" href="#"></a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="request">
+				<div class="wrap">
+					<div class="text">
+						<h3>Request</h3>
+						<p>언제든 문의하실 내용 있으시면 폼 보내주세요 :)</p>
+					</div>
+					<form class="form" name="request" action="">
+						<p><input type="text" name="email" placeholder="이메일"></p>
+						<p><input type="text" name="title" placeholder="문의 제목"></p>
+						<textarea name="content" placeholder="문의 내용"></textarea>
+						<p><input type="button" value="문의하기" onclick="javascript:alert('준비중입니다!!');"></p>
+					</form>
+					</div>
+			</div>
 		</div>
+		<a href="#" class="to_top"></a>
+		<footer>
+			<div class="wrap">
+				<p>
+					관리자: 허지은<br>
+					전화번호: 010-7794-1204<br>
+					이메일: gjekdmlwl@naver.com
+				</p>
+				<small>
+					Copyright 2021  All rights reserved. STUDDAY
+					  |  
+					<a href="#">이용약관</a>  |  <a href="#">개인정보취급방침</a>
+				</small>
+				<h5 class="f_logo"><a href="index.html"></a></h5>
+			</div>
+		</footer>
 	</body>
 </html>

@@ -1,0 +1,137 @@
+/* 초기화 */
+html, body, h1, h2, h3, h4, h5, h6, a, p, div, ul, li {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul, li {
+	list-style: none;
+	display: inline-block;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	display: inline-block;
+	font-size: inherit;
+}
+
+input[type=button],
+input[type=submit] {
+	border: none;
+	outline: 0;
+}
+
+.wrap {
+	max-width: 1250px;
+	margin: 0 auto; 
+}
+
+.clearfix:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/* 버튼 */
+.btn {
+	background: #556773;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 3px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.btn:hover {
+	background: #84A1B3;
+}
+
+/* header */
+header {
+	height: 70px;
+	width: 100%;
+	position: relative;
+}
+
+.logo {
+	width: 200px;
+	height: 60px;
+	position: absolute;
+	top: 5px;
+	left: 0;
+}
+
+.logo a {
+	width: 100%;
+	height: 100%;
+	background: url('../img/logo.png') no-repeat center center ;
+	background-size: cover;
+	
+	font-size: 14px;
+}
+
+.login {
+	position: absolute;
+	top: 10px;
+	right: 0;
+}
+
+.nav {
+	position: absolute;
+	top: 40px;
+	left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-size: 20px;
+	font-weight: bold;
+}
+
+.nav li {
+	margin: 0 5px;
+}
+
+.nav a {
+	padding: 10px 20px;
+	border-bottom: 3px solid #fff;
+}
+
+.nav a:hover {
+	color: #0973BA;
+	border-bottom: 3px solid #0973BA;
+}
+
+/* main */
+.banner {
+	position: relative;
+	background: #556773;
+	height: 450px;
+	
+	text-align: center;
+	color: #fff;
+}
+
+.banner .text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+	display: inline-block;
+	font-size: 50px;
+	line-height: 55px;
+	border-bottom: 3px solid #fff;
+	
+	margin-bottom: 20px;
+}
+
+.banner p {
+	line-height: 24px;
+}
+
+.b_btn {
+	display: inline-block;
+}

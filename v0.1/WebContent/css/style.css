@@ -1,5 +1,5 @@
 /* ÃÊ±âÈ­ */
-html, body, h1, h2, h3, h4, h5, h6,
+html, body, h1, h2, h3, h4, h5, h6, span
 a, p, div, ul, li, input, form, textarea {
 	margin: 0;
 	padding: 0;
@@ -11,7 +11,7 @@ ul, li {
 	display: inline-block;
 }
 
-a {
+a, span {
 	color: inherit;
 	text-decoration: none;
 	display: inline-block;
@@ -26,6 +26,20 @@ input, textarea {
 input[type=button],
 input[type=submit] {
 	cursor: pointer;
+}
+
+input[type=text],
+input[type=password] {
+	border-bottom: 1px solid #e3ebf0;
+	padding: 5px;
+}
+
+textarea {
+	border: 1px solid #e3ebf0;
+	width: 100%;
+	height: 300px;
+	padding: 20px;
+  resize: none;
 }
 
 .wrap {
@@ -51,6 +65,11 @@ input[type=submit] {
 
 .btn:hover {
 	background: #84A1B3;
+}
+
+.btn_wrap {
+	width: 100%;
+	text-align: right;
 }
 
 /****** header ******/
@@ -82,15 +101,15 @@ header .wrap {
 	background-size: cover;
 }
 
-/* login */
-.login {
+/* info */
+.info {
 	position: absolute;
 	top: 10px;
 	right: 10px;
 	font-size: 14px;
 }
 
-.login a:hover {
+.info a:hover {
 	color: #556773;
 }
 
@@ -140,6 +159,9 @@ header .wrap {
   
   background: #fff;
   padding: 0 5px 5px;
+  border-left: 1px solid #e3ebf0;
+  border-bottom: 1px solid #e3ebf0;
+  border-right: 1px solid #e3ebf0;
 }
 
 .sub_nav li {
@@ -197,7 +219,7 @@ h2 {
 
 .b_btn a {
 	border: 2px solid #fff;
-	padding: 10px 40px;
+	padding: 10px 50px;
 	border-radius: 17px;
 	
 	z-index: 999;
@@ -266,7 +288,6 @@ h2 {
 
 .text {
 	color: #556773;
-	margin-bottom: 30px;
 }
 
 .before_btn, .after_btn {
@@ -347,6 +368,21 @@ h2 {
 	margin: 20px 20px 16px 20px;
 }
 
+.item .thumb1 {
+	background: url("../img/java.jpg") no-repeat center center;
+	background-size: cover;
+}
+
+.item .thumb2 {
+	background: url("../img/sql.jpg") no-repeat center center;
+	background-size: cover;
+}
+
+.item .thumb3 {
+	background: url("../img/javascript.jpg") no-repeat center center;
+	background-size: cover;
+}
+
 .item p {
 	margin-left: 20px;
 }
@@ -381,6 +417,10 @@ h3 {
 	font-weight: bold;
 }
 
+.request .text {
+	margin-bottom: 40px;
+}
+
 .form {
 	max-width: 850px;
 	margin: 0 auto 100px;
@@ -405,7 +445,6 @@ h3 {
 	height: 280px;
 	margin-bottom: 10px;
 	padding: 10px;
-  resize: none;
 }
 
 .form input[type=button] {
@@ -420,6 +459,7 @@ h3 {
 }
 
 /* to top */
+/*
 .to_top {
   position:fixed;
   bottom:16px;
@@ -447,6 +487,7 @@ h3 {
   border-top:3px solid #fff;
   transform:translateX(-50%) rotate(45deg);
 }
+*/
 
 /* footer */
 footer {
@@ -482,4 +523,210 @@ footer small {
 	height: 100%;
 	background: url('../img/f_logo.png') no-repeat center center ;
 	background-size: cover;
+}
+
+/****** Study ******/
+/* Study */
+.study {
+	width: 800px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 50px 0;
+}
+
+.study h3 {
+	font-size: 32px;
+}
+
+.tab_menu {
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+.tab_menu a {
+	padding: 10px 20px;
+	margin: 0 10px;
+	border-bottom: 3px solid #fff;
+}
+
+.tab_menu a:hover {
+	box-sizing: border-box;
+	color: #0973BA;
+	border-bottom: 3px solid #0973BA;
+}
+
+.tab_menu .now {
+	box-sizing: border-box;
+	color: #0973BA;
+	border-bottom: 3px solid #0973BA;
+}
+
+.study table {
+	width: 100%;
+	margin: 0 auto 20px;
+	border-collapse: collapse;
+	border-bottom: 1px solid #84A1B3;
+}
+
+.study table th,
+.study table td {
+	padding: 5px;
+}
+
+.study table td a {
+	width: 100%;
+	height: 100%;
+}
+
+.study thead {
+	background: #84A1B3;
+	color: #fff;
+}
+
+.study tbody tr:hover {
+	background: #e3ebf0;
+}
+
+.study tbody td:nth-child(1) {
+	width: 60px;
+}
+
+.study tbody td:nth-child(2) {
+	text-align: left;
+}
+
+.study tbody td:nth-child(3) {
+	width: 100px;
+}
+
+.study tbody td:nth-child(4) {
+	width: 220px;
+}
+
+.study tbody td:nth-child(5) {
+	width: 90px;
+}
+
+.paging a {
+	padding: 5px;
+}
+
+.paging .now {
+	color: red;
+}
+
+/****** sub_page ******/
+/* sub_page */
+.sub_page {
+	min-height: 530px;
+	width: 70%;
+	padding: 50px 0;
+	margin: 0 auto;
+	
+}
+
+.sub_page > div {
+	padding-top: 50px;
+}
+
+.category {
+	width: 90%;
+	max-width: 700px;
+	margin: 0 auto 20px;
+	
+	font-weight: bold;
+}
+
+.write, .view, .modify {
+	width: 90%;
+	max-width: 700px;
+	margin: 0 auto 20px;
+}
+
+.write p,
+.view p,
+.modify p {
+	padding: 10px;
+}
+
+.write span,
+.view span,
+.modify span {
+	width: 100px;
+	font-weight: bold;
+}
+
+.write input[type=text],
+.modify input[type=text] {
+	width: 80%;
+}
+
+.write input[type=text].date,
+.modify input[type=text].date {
+	max-width: 200px;
+}
+
+.write .btn_wrap,
+.view .btn_wrap,
+.modify .btn_wrap {
+	margin-top: 20px;
+}
+
+.view .content {
+	border: 1px solid #e3ebf0;
+	padding: 20px;
+	width: 100%;
+	min-height: 300px;
+	margin-bottom: 20px;
+}
+
+.view .line {
+	border-bottom: 2px solid #556773;
+	margin: 15px 0 20px;
+}
+
+/* join */
+.join, .login {
+	width: 350px;
+	margin: 0 auto 50px;
+}
+
+.join p,
+.login p {
+	margin-bottom: 25px;
+	position: relative;
+}
+
+.join input[type=text],
+.join input[type=password],
+.login input[type=text],
+.login input[type=password] {
+	padding: 5px;
+	position: absolute;
+	right: 0;
+	width: 70%;
+}
+
+.join .btn,
+.login .btn {
+	width: 100%;
+	height: 40px;
+	background: #556773;
+	color: #fff;
+	font-weight: bold;
+}
+
+.join .btn:hover,
+.login .btn:hover {
+	background: #0973ba;
+}
+
+.join input[type=submit],
+.login input[type=submit] {
+	margin-top: 15px;
+}
+
+.login a {
+	width: 100%;
+	text-align: center;
 }

@@ -42,28 +42,57 @@
 			<div class="wrap">
 				<div class="sub_page">
 					<div>
-						<div class="category write">
-							<p>Study > With Us > Lecture</p>
+						<div class="category view">
+							<p>Study > Lecture > View</p>
 						</div>
 						<div>
-							<form class="write" name="write" method="post" action="d_view.html">
-								<p><span>제목 </span><input type="text" name="title" placeholder="제목을 입력해주세요 :)"></p>
-								<p><span>작성자 </span>홍길동</p>
-								<p>
-									<span>언어 </span>
-									<select>
-										<option>JAVA</option>
-										<option>SQL</option>
-										<option>Javascript</option>
-									</select>
-								</p>
-								<p><span>날짜 </span>2021-12-03</p>
-								<textarea></textarea>
-								<div class="btn_wrap">
-									<a class="btn" href="recture.html">뒤로가기</a>
-									<input class="btn" type="submit" value="글쓰기">
+							<div class="view">
+								<div>
+									<p><span>제목 </span>Java 스터디 구합니다</p>
+									<p><span>작성자 </span>홍길동</p>
+									<p><span>언어 </span>JAVA</p>
+									<p><span>날짜 </span>2021-12-01</p>
+									<div class="line"></div>
+									<div class="content">
+										자료 아주 좋아요<br>
+										같이 공부해요
+									</div>
+									<div class="btn_wrap">
+										<a class="btn" href="recture.html">뒤로가기</a>
+										<a class="btn" href="d_modify.html">글수정</a>
+										<a class="btn" href="delete.html">글삭제</a>
+									</div>
 								</div>
-							</form>
+								<div class="comment_wrap">
+									<div class="line"></div>
+									<div class="comment now">
+										<form name="comment">
+											<span>홍선생</span>
+											<input type="text" name="comment" placeholder="댓글을 입력해주세요">
+											<span class="date">2021-12-03</span>
+											<input class="btn" type="submit" value="댓글달기">
+										</form>
+									</div>
+									<div class="comment">
+										<span>홍선생</span>
+										<p>아주 좋아요</p>
+										<span class="date">2021-12-03</span>
+										<a href=#>삭제</a>
+									</div>
+									<div class="comment">
+										<span>홍선생</span>
+										<p>아주 좋아요</p>
+										<span class="date">2021-12-03</span>
+										<a href=#>삭제</a>
+									</div>
+									<div class="comment">
+										<span>홍선생</span>
+										<p>아주 좋아요</p>
+										<span class="date">2021-12-03</span>
+										<a href=#>삭제</a>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

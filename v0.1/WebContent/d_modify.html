@@ -42,13 +42,13 @@
 			<div class="wrap">
 				<div class="sub_page">
 					<div>
-						<div class="category write">
-							<p>Study > With Us > Lecture</p>
+						<div class="category modify">
+							<p>Study > With Us > Modify</p>
 						</div>
 						<div>
-							<form class="write" name="write" method="post" action="d_view.html">
-								<p><span>제목 </span><input type="text" name="title" placeholder="제목을 입력해주세요 :)"></p>
-								<p><span>작성자 </span>홍길동</p>
+							<form class="modify" name="write" method="post" action="d_view.html">
+								<p><span>제목 </span><input type="text" name="title" value="Java 스터디 구합니다"></p>
+								<p><span>작성자 </span><input type="text" name="name" value="홍길동"></p>
 								<p>
 									<span>언어 </span>
 									<select>
@@ -57,11 +57,16 @@
 										<option>Javascript</option>
 									</select>
 								</p>
-								<p><span>날짜 </span>2021-12-03</p>
-								<textarea></textarea>
+								<p>
+									<span>날짜 </span>
+									<input class="date" type="text" name="date" value="2021-12-01"> ~ 
+									<input class="date" type="text" name="date" value="2021-12-10">
+								</p>
+								<textarea>자료 아주 좋아요
+같이 공부해요</textarea>
 								<div class="btn_wrap">
-									<a class="btn" href="recture.html">뒤로가기</a>
-									<input class="btn" type="submit" value="글쓰기">
+									<a class="btn" href="d_view.html">뒤로가기</a>
+									<input class="btn" type="submit" value="수정하기">
 								</div>
 							</form>
 						</div>

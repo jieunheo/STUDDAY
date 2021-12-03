@@ -760,18 +760,23 @@ footer small {
 
 .join p,
 .login p {
-	margin-bottom: 25px;
-	position: relative;
+	margin-bottom: 20px;
 }
 
 .join input[type=text],
 .join input[type=password],
 .login input[type=text],
 .login input[type=password] {
-	padding: 5px;
-	position: absolute;
-	right: 0;
-	width: 70%;
+	/*border: 1px solid #e3ebf0;*/
+	padding: 12px 10px;
+	width: 100%;
+}
+
+.join input[type=text]:focus,
+.join input[type=password]:focus,
+.login input[type=text]:focus,
+.login input[type=password]:focus {
+	background: #fafbfc;
 }
 
 .join .btn,

@@ -64,7 +64,7 @@ textarea {
 }
 
 .btn:hover {
-	background: #84A1B3;
+	background: #0973BA;
 }
 
 .btn_wrap {
@@ -120,7 +120,7 @@ header .wrap {
 	left: 50%;
   transform: translate(-50%, -50%);
   
-  font-size: 18px;
+  font-size: 21px;
 	font-weight: bold;
 	
 	z-index: 999;
@@ -394,7 +394,7 @@ h2 {
 /*******************************/
 
 h3 {
-	font-size: 28px;
+	font-size: 32px;
 	margin-bottom: 10px;
 }
 
@@ -413,8 +413,6 @@ h3 {
 	text-align: center;
 	
 	padding-top: 50px;
-
-	font-weight: bold;
 }
 
 .request .text {
@@ -533,11 +531,11 @@ footer small {
 	margin: 0 auto;
 	padding: 50px 0;
 }
-
+/*
 .study h3 {
 	font-size: 32px;
 }
-
+*/
 .tab_menu {
 	font-size: 20px;
 	margin-bottom: 30px;
@@ -591,20 +589,36 @@ footer small {
 	width: 60px;
 }
 
-.study tbody td:nth-child(2) {
+.withus tbody td:nth-child(2) {
 	text-align: left;
 }
 
-.study tbody td:nth-child(3) {
+.withus tbody td:nth-child(3) {
 	width: 100px;
 }
 
-.study tbody td:nth-child(4) {
+.withus tbody td:nth-child(4) {
 	width: 220px;
 }
 
-.study tbody td:nth-child(5) {
+.withus tbody td:nth-child(5) {
 	width: 90px;
+}
+
+.recture tbody td:nth-child(2) {
+	text-align: left;
+}
+
+.recture tbody td:nth-child(3) {
+	width: 100px;
+}
+
+.recture tbody td:nth-child(4) {
+	width: 100px;
+}
+
+.recture tbody td:nth-child(5) {
+	width: 100px;
 }
 
 .paging a {
@@ -685,6 +699,59 @@ footer small {
 	margin: 15px 0 20px;
 }
 
+.comment_wrap {
+	padding-top: 20px;
+}
+
+.comment {
+	display: inline-block;
+	width: 100%;
+	padding: 0 15px;
+}
+
+.comment form {
+	padding-bottom: 20px;
+}
+
+.comment span:first-child {
+	width: 70px;
+}
+
+.comment .date {
+	font-weight: normal;
+}
+
+.comment input[type=text] {
+	width: 55%;
+	max-width: 380px;
+	
+	margin-right: 20px;
+}
+
+.comment p {
+	display: inline-block;
+	width: 55%;
+	max-width: 380px;
+	
+	margin-right: 20px;
+}
+
+.comment .btn {
+	color: #556773;
+	border: 1px solid #556773;
+	background: #fff;
+}
+
+.comment .btn:hover {
+	color: #fff;
+	border: 1px solid #0973BA;
+	background: #0973BA;
+}
+
+.comment a:hover {
+	color: #556773;
+}
+
 /* join */
 .join, .login {
 	width: 350px;
@@ -729,4 +796,9 @@ footer small {
 .login a {
 	width: 100%;
 	text-align: center;
+}
+
+/* notice */
+.notice {
+	margin-bottom: 30px;
 }

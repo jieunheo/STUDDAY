@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String id 	    = (String)session.getAttribute("id");				//로그인아이디
+String nickname = (String)session.getAttribute("nickname"); //닉네임
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,9 +17,22 @@
 		<header class="clearfix">
 			<div class="wrap">
 				<h1 class="logo"><a href="index.jsp"></a></h1>
-				<div class="info">
+				<div class="info_wrap">
+				<%			
+				if(id == null || nickname == null)
+				{
+					%>
 					<a href="join.jsp">JOIN</a>&nbsp;|&nbsp;
 					<a href="login.jsp">LOGIN</a>
+					<%
+				} else
+				{
+					%>
+					<a href="info.jsp">INFO</a>&nbsp;|&nbsp;
+					<a href="logout.jsp">LOGOUT</a>
+					<%
+				}
+				%>	
 				</div>
 				<div class="nav">
 					<ul>

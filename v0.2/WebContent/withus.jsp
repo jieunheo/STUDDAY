@@ -7,7 +7,7 @@
 			<h3>STUDY</h3>
 			<div class="tab_menu">
 				<ul>
-					<li><a href="withus.jap" class="now">With Us</a></li>
+					<li><a href="withus.jsp" class="now">With Us</a></li>
 					<li><a href="javascript:ready();">Lecture</a></li>
 					<li><a href="javascript:ready();">Reference</a></li>
 					<li><a href="javascript:ready();">Tip</a></li>

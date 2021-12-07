@@ -5,11 +5,95 @@
 window.onload = function()
 {
 	document.join.id.focus();
+	
+	//아이디값 확인
+	IdCheck(id);
+	//닉네임값 확인
+	//NickCheck(nickname);
 }
 
-function OnFocus(value)
+function IdCheck(myid)
 {
-	value.focus();
+	$(myid).keyup(function() {
+		var value = $(this).val();
+		
+		if (value == "")
+		{
+			return;
+		}
+		
+		$.ajax({
+			type: "get",
+			url: "idcheck.jsp?id=" + value,
+			dataType: "html",
+			success: function(data) {
+				data = data.trim();
+				
+				if (data == "none")
+				{
+					SetBackColor(myid,'');
+				} else if (data == "isId")
+				{
+					SetBackColor(myid,'rgba(255,0,0,0.2)');
+				} else if (data == "doId")
+				{
+					SetBackColor(myid,'rgba(0,0,255,0.2)');
+					//SetBackColor(myid,'');
+				}
+			},
+			complete: function(data) {
+				//alert('complete');
+			},
+			error: function(xhr, status, error) {
+				//alert('error');
+			}
+		});
+	});
+}
+
+/*
+function NickCheck(myid)
+{
+	$(myid).keyup(function() {
+		var value = $(this).val();
+		
+		if (value == "")
+		{
+			return;
+		}
+		
+		$.ajax({
+			type: "get",
+			url: "nickcheck.jsp?nickname=" + value,
+			dataType: "html",
+			success: function(data) {
+				data = data.trim();
+				
+				if (data == "none")
+				{
+					SetBackColor(myid,'');
+				} else if (data == "idNick")
+				{
+					SetBackColor(myid,'rgba(255,0,0,0.2)');
+				} else if (data == "doNick")
+				{
+					SetBackColor(myid,'rgba(0,0,255,0.2)');
+				}
+			},
+			complete: function(data) {
+				//alert('complete');
+			},
+			error: function(xhr, status, error) {
+				//alert('error');
+			}
+		});
+	});
+}
+*/
+
+function SetBackColor(myid,color)
+{
+	$(myid).css('background-color',color);
 }
 
 function FormCheck()
@@ -17,35 +101,35 @@ function FormCheck()
 	if(document.join.id.value == "")
 	{
 		alert('아이디를 입력해주세요.');
-		OnFocus(document.join.id);
+		document.join.id.focus();
 		return false;
 	}
 	
 	if(document.join.pw.value == "")
 	{
 		alert('비밀번호를 입력해주세요.');
-		OnFocus(document.join.pw);
+		document.join.pw.focus();
 		return false;
 	}
 	
 	if(document.join.pw.value != document.join.pwok.value)
 	{
 		alert('비밀번호가 일치하지 않습니다.');
-		OnFocus(document.join.pw);
+		document.join.pw.focus();
 		return false;
 	}
 	
 	if(document.join.nickname.value == "")
 	{
 		alert('닉네임을 입력해주세요.');
-		OnFocus(document.join.pw);
+		document.join.pw.focus();
 		return false;
 	}
 	
 	if(document.join.email.value == "")
 	{
 		alert('이메일을 입력해주세요.');
-		OnFocus(document.join.email);
+		document.join.email.focus();
 		return false;
 	}
 }
@@ -59,11 +143,11 @@ function FormCheck()
 				</div>
 				<div>
 					<form class="join" name="join" method="post" action="joinok.jap" onsubmit="return FormCheck();">
-						<p><input type="text" name="id" placeholder="아이디"></p>
-						<p><input type="password" name="pw" placeholder="비밀번호"></p>
-						<p><input type="password" name="pwok" placeholder="비밀번호확인"></p>
-						<p><input type="text" name="nickname" placeholder="닉네임"></p>
-						<p><input type="email" name="email" placeholder="hong@naver.com"></p>
+						<p><input id="id" type="text" name="id" placeholder="아이디"></p>
+						<p><input id="pw" type="password" name="pw" placeholder="비밀번호"></p>
+						<p><input id="pwok" type="password" name="pwok" placeholder="비밀번호확인"></p>
+						<p><input id="nickname" type="text" name="nickname" placeholder="닉네임"></p>
+						<p><input id="email" type="email" name="email" placeholder="hong@naver.com"></p>
 						<p><input class="btn" type="submit" value="회원가입"></p>
 					</form>
 				</div>

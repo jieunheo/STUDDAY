@@ -41,7 +41,7 @@ function ValueCheck(myid)
 				if (data == "00")
 				{
 					SetBackColor(myid,'');
-					OutFocus(myid,'');
+					OutFocus(myid,'rgba(255,0,0,0.2)');
 				} else if (data == "01")
 				{
 					SetBackColor(myid,'rgba(255,0,0,0.2)');
@@ -67,46 +67,6 @@ function ValueCheck(myid)
 	});
 }
 
-/*
-function NickCheck(myid)
-{
-	$(myid).keyup(function() {
-		var value = $(this).val();
-		
-		if (value == "")
-		{
-			return;
-		}
-		
-		$.ajax({
-			type: "get",
-			url: "nickcheck.jsp?nickname=" + value,
-			dataType: "html",
-			success: function(data) {
-				data = data.trim();
-				
-				if (data == "none")
-				{
-					SetBackColor(myid,'');
-				} else if (data == "idNick")
-				{
-					SetBackColor(myid,'rgba(255,0,0,0.2)');
-				} else if (data == "doNick")
-				{
-					SetBackColor(myid,'rgba(0,0,255,0.2)');
-				}
-			},
-			complete: function(data) {
-				//alert('complete');
-			},
-			error: function(xhr, status, error) {
-				//alert('error');
-			}
-		});
-	});
-}
-*/
-
 function OutFocus(myid, color)
 {
 	$(myid).focusout(function() {
@@ -127,12 +87,22 @@ function FormCheck()
 		alert('아이디를 입력해주세요.');
 		document.join.id.focus();
 		return false;
+	}	else if(document.join.id.value.length < 4)
+	{
+		alert('아이디를 4글자 이상 입력해주세요');
+		document.join.id.focus();
+		return false;
 	}
 	
 	if(document.join.pw.value == "")
 	{
 		alert('비밀번호를 입력해주세요.');
 		document.join.pw.focus();
+		return false;
+	}	else if(document.join.pw.value.length < 4)
+	{
+		alert('비밀번호를 4글자 이상 입력해주세요');
+		document.join.id.focus();
 		return false;
 	}
 	
@@ -147,6 +117,11 @@ function FormCheck()
 	{
 		alert('닉네임을 입력해주세요.');
 		document.join.pw.focus();
+		return false;
+	}	else if(document.join.nickname.value.length < 4)
+	{
+		alert('닉네임을 4글자 이상 입력해주세요');
+		document.join.id.focus();
 		return false;
 	}
 	
@@ -166,7 +141,7 @@ function FormCheck()
 					<p>Join</p>
 				</div>
 				<div>
-					<form class="join" name="join" method="post" action="joinok.jap" onsubmit="return FormCheck();">
+					<form class="join" name="join" method="post" action="joinok.jsp" onsubmit="return FormCheck();">
 						<p><input id="id" type="text" name="id" placeholder="아이디"></p>
 						<p><input id="pw" type="password" name="pw" placeholder="비밀번호"></p>
 						<p><input id="pwok" type="password" name="pwok" placeholder="비밀번호확인"></p>

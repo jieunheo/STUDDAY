@@ -11,7 +11,19 @@
 					<p>오늘도 공부하는 날 :)</p>
 				</div>
 				<div class="b_btn">
-					<a href="login.jsp">동료 구하기</a>
+					<%
+					if(login == null)
+					{
+						%>
+						<a href="login.jsp" onclick="alert('로그인 해주세요!');">동료 구하기</a>
+						<%
+					} else
+					{
+						%>
+						<a href="withus.jsp">동료 구하기</a>
+						<%
+					}
+					%>
 				</div>
 			</div>
 		</div>

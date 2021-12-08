@@ -50,20 +50,13 @@ if(dbms.GetNext() == false)
 	lang = dbms.GetValue("lang");
 	start_date = dbms.GetValue("start_date");
 	end_date = dbms.GetValue("end_date");
+	state = dbms.GetValue("state");
 	nickname = dbms.GetValue("nickname");
 	dbms.CloseQuery();
-
-	System.out.println("bno  "+bno);
-	System.out.println("no  "+no);
-	System.out.println("kinds  "+kinds);
-	System.out.println("title  "+title);
-	System.out.println("post  "+post);
-	System.out.println("lang  "+lang);
-	System.out.println("start_date  "+start_date);
-	System.out.println("end_date  "+end_date);
-	System.out.println("nickname  "+nickname);
+	
+	start_date = start_date.split(" ")[0];
+	end_date = end_date.split(" ")[0];
 }
-
 
 %>
 <div class="main">
@@ -76,15 +69,14 @@ if(dbms.GetNext() == false)
 				<div>
 					<div class="view">
 						<div>
-							<p><span>스터디 이름 </span>Java 스터디 구합니다</p>
-							<p><span>리더 </span>홍길동</p>
-							<p><span>언어 </span>JAVA</p>
-							<p><span>모집 여부 </span>모집 중</p>
-							<p><span>모집 기간 </span>2021-12-01 ~ 2021-12-10</p>
+							<p><span>스터디 이름 </span><%= title %></p>
+							<p><span>리더 </span><%= nickname %></p>
+							<p><span>언어 </span><%= lang %></p>
+							<p><span>모집 여부 </span><%= state %></p>
+							<p><span>모집 기간 </span><%= start_date %> ~ <%= end_date %></p>
 							<div class="line"></div>
 							<div class="content">
-								함께 자바 스터디 하실 분 구합니다.<br>
-								같이 공부해요
+								<%= post %>
 							</div>
 							<div class="btn_wrap">
 								<a class="btn" href="withus.jsp">뒤로가기</a>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../config/dbopen.jsp"%>
 <%
-String id 	    = (String)session.getAttribute("id");				//로그인아이디
-String nickname = (String)session.getAttribute("nickname"); //닉네임
+LoginVo login = (LoginVo)session.getAttribute("login");	//로그인정보
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@ String nickname = (String)session.getAttribute("nickname"); //닉네임
 				<h1 class="logo"><a href="index.jsp"></a></h1>
 				<div class="info_wrap">
 				<%			
-				if(id == null || nickname == null)
+				if(login == null)
 				{
 					%>
 					<a href="join.jsp">JOIN</a>&nbsp;|&nbsp;

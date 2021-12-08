@@ -11,53 +11,53 @@ drop table reply;
 /****** create table ******/
 create table user
 (
-	no INT PRIMARY KEY auto_increment comment 'È¸¿ø¹øÈ£',
-	id VARCHAR(100) comment '¾ÆÀÌµğ',
-	pw VARCHAR(100) comment 'ºñ¹Ğ¹øÈ£',
-	nickname VARCHAR(50) comment '´Ğ³×ÀÓ',
-	email VARCHAR(50) comment 'ÀÌ¸ŞÀÏ',
-	join_date DATETIME default now() comment '°¡ÀÔÀÏÀÚ',
-	retire VARCHAR(2) default 'N' comment 'Å»Åğ¿©ºÎ',
-	jop VARCHAR(100) comment 'Á÷¾÷',
-	interest VARCHAR(255) comment '°ü½É»ç',
-	intro TEXT comment 'ÀÚ±â¼Ò°³',
-	page VARCHAR(255) comment 'È¨ÆäÀÌÁö'
+	no INT PRIMARY KEY auto_increment comment 'íšŒì›ë²ˆí˜¸',
+	id VARCHAR(100) comment 'ì•„ì´ë””',
+	pw VARCHAR(100) comment 'ë¹„ë°€ë²ˆí˜¸',
+	nickname VARCHAR(50) comment 'ë‹‰ë„¤ì„',
+	email VARCHAR(50) comment 'ì´ë©”ì¼',
+	join_date DATETIME default now() comment 'ê°€ì…ì¼ì‹œ',
+	retire VARCHAR(2) default 'N' comment 'íƒˆí‡´ì—¬ë¶€',
+	jop VARCHAR(100) comment 'ì§ì—…',
+	interest VARCHAR(255) comment 'ê´€ì‹¬ì‚¬',
+	intro TEXT comment 'ìê¸°ì†Œê°œ',
+	page VARCHAR(255) comment 'í™ˆí˜ì´ì§€'
 );
 
 create table board
 (
-	bno INT PRIMARY KEY auto_increment comment '°Ô½Ã¹°¹øÈ£',
-	no INT comment 'È¸¿ø¹øÈ£',
-	kinds VARCHAR(2) comment '°Ô½Ã¹°Á¾·ù',
-	email VARCHAR(100) comment 'Á¦¸ñ',
-	post TEXT comment '³»¿ë',
-	lang VARCHAR(20) comment '¾ğ¾î',
-	date DATETIME default now() comment 'ÀÛ¼ºÀÏ',
-	views INT default 0 comment 'Á¶È¸¼ö',
-	start_date DATETIME comment '½ÃÀÛ³¯Â¥',
-	end_date DATETIME comment '³¡³¯Â¥',
-	state VARCHAR(10) comment '¸ğÁı¿©ºÎ',
+	bno INT PRIMARY KEY auto_increment comment 'ê²Œì‹œë¬¼ë²ˆí˜¸',
+	no INT comment 'íšŒì›ë²ˆí˜¸',
+	kinds VARCHAR(2) comment 'ê²Œì‹œë¬¼ì¢…ë¥˜',
+	title VARCHAR(100) comment 'ì œëª©',
+	post TEXT comment 'ë‚´ìš©',
+	lang VARCHAR(20) comment 'ì–¸ì–´',
+	date DATETIME default now() comment 'ì‘ì„±ì¼',
+	views INT default 0 comment 'ì¡°íšŒìˆ˜',
+	start_date DATETIME comment 'ì‹œì‘ë‚ ì§œ',
+	end_date DATETIME comment 'ëë‚ ì§œ',
+	state VARCHAR(10) comment 'ëª¨ì§‘ì—¬ë¶€',
 	foreign key(no) references user(no)
 );
 
 create table attach
 (
-	ano INT PRIMARY KEY auto_increment comment 'Ã·ºÎ¹øÈ£',
-	bno INT comment '°Ô½Ã¹°¹øÈ£',
-	no INT comment 'È¸¿ø¹øÈ£',
-	pname VARCHAR(255) comment '¹°¸®ÆÄÀÏ¸í',
-	fname VARCHAR(255) comment '³í¸®ÆÄÀÏ¸í',
+	ano INT PRIMARY KEY auto_increment comment 'ì²¨ë¶€ë²ˆí˜¸',
+	bno INT comment 'ê²Œì‹œë¬¼ë²ˆí˜¸',
+	no INT comment 'íšŒì›ë²ˆí˜¸',
+	pname VARCHAR(255) comment 'ë…¼ë¦¬íŒŒì¼ëª…',
+	fname VARCHAR(255) comment 'ë¬¼ë¦¬íŒŒì¼ëª…',
 	foreign key(no) references user(no),
 	foreign key(bno) references board(bno)
 );
 
 create table reply
 (
-	rno int primary key auto_increment comment '´ñ±Û¹øÈ£',
-	bno int comment '°Ô½Ã¹°¹øÈ£',
-	no int comment 'È¸¿ø¹øÈ£',
-	rpost TEXT comment '´ñ±Û³»¿ë',
-	rdate DATETIME default now() comment '´ñ±ÛÀÛ¼ºÀÏ',
+	rno int primary key auto_increment comment 'ëŒ“ê¸€ë²ˆí˜¸',
+	bno int comment 'ê²Œì‹œë¬¼ë²ˆí˜¸',
+	no int comment 'íšŒì›ë²ˆí˜¸',
+	rpost TEXT comment 'ëŒ“ê¸€ë‚´ìš©',
+	rdate DATETIME default now() comment 'ëŒ“ê¸€ì‘ì„±ì¼',
 	foreign key(no) references user(no),
 	foreign key(bno) references board(bno)
 );

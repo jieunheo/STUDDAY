@@ -42,9 +42,16 @@
 					%>
 					</tbody>
 				</table>
-				<div class="btn_wrap">
-					<a class="btn" href="write.jsp">글쓰기</a>
-				</div>
+				<%
+				if(login != null)
+				{
+					%>
+					<div class="btn_wrap">
+						<a class="btn" href="write.jsp">글쓰기</a>
+					</div>
+					<%
+				}
+				%>
 				<div class="paging">
 					<ul>
 						<li><a href="#" class="now">1</a></li>

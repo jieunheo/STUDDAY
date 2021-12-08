@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
 <%
-session.removeAttribute("id");
-session.removeAttribute("nickname");
+session.removeAttribute("login");
 %>
 <script>
 	alert('로그아웃 되었습니다.');

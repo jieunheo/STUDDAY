@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
 <%
-id = request.getParameter("id");
-String pw = request.getParameter("pw");
+String no       = "";													//회원번호
+String id       = request.getParameter("id"); //아이디
+String pw       = request.getParameter("pw"); //비밀번호
+String nickname = "";													//닉네임
 
 if(id == null || pw == null)
 {
@@ -25,8 +27,31 @@ if(id == "" || pw == "")
 	<%
 }
 
-session.setAttribute("id", id);
-session.setAttribute("nickname", "pongdang");
+String sql = "";
+sql += "select no,id,nickname ";
+sql += "from user ";
+sql += "where id = '" + id + "' ";
+sql += "and pw = md5('" + pw + "') ";
+sql += "and retire = 'N';"; //탈퇴여부
+dbms.OpenQuery(sql);
+if(dbms.GetNext() == false)
+{
+	dbms.CloseQuery();
+	%>
+	<script>
+		alert('아이디 또는 비밀번호가 틀렸습니다.');
+		document.location = 'login.jsp';
+	</script>
+	<%
+} else
+{
+	no = dbms.GetValue("no");
+	nickname = dbms.GetValue("nickname");
+}
+dbms.CloseQuery();
+
+login = new LoginVo(no,id,pw);
+session.setAttribute("login", login);
 %>
 <script>
 	alert('로그인 되었습니다.');

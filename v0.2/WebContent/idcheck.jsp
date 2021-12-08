@@ -3,14 +3,14 @@
 <%
 String id = request.getParameter("id");
 
-if (id == null || id.equals(""))
+if (id == null || id.equals("") || id.length() < 4)
 {	//값이 없음
-	out.print("none");
+	out.print("00");
 } else if (id.equals("test") || id.equals("ezen"))
 {	//아이디가 이미 있음
-	out.print("isID");
+	out.print("01");
 } else if(id.length() >= 4)
 {	//사용 가능한 아이디
-	out.print("doID");
+	out.print("02");
 }
 %>

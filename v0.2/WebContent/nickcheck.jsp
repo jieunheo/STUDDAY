@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String nickname = request.getParameter("nickname");
+String nickname = request.getParameter("nick");
 
-if (nickname == null || nickname.equals(""))
+if (nickname == null || nickname.equals("") || nickname.length() < 4)
 {	//값이 없음
-	out.print("none");
-} else if (nickname.equals("test") || nickname.equals("ezen"))
+	out.print("00");
+} else if (nickname.equals("nick") || nickname.equals("ezen"))
 {	//닉네임이 이미 있음
-	out.print("isNick");
+	out.print("01");
 } else if(nickname.length() >= 4)
 {	//사용 가능한 닉네임
-	out.print("doNick");
+	out.print("02");
 }
 %>

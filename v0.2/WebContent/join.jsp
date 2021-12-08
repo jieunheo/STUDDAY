@@ -7,38 +7,54 @@ window.onload = function()
 	document.join.id.focus();
 	
 	//아이디값 확인
-	IdCheck(id);
+	ValueCheck(id);
 	//닉네임값 확인
-	//NickCheck(nickname);
+	ValueCheck(nickname);
 }
 
-function IdCheck(myid)
+function ValueCheck(myid)
 {
 	$(myid).keyup(function() {
 		var value = $(this).val();
+		var url = "";
 		
 		if (value == "")
 		{
 			return;
 		}
 		
+		if (myid == document.join.id)
+		{
+			url = "idcheck.jsp?id=";
+		} else
+		{
+			url = "nickcheck.jsp?nick=";
+		}
+		
 		$.ajax({
 			type: "get",
-			url: "idcheck.jsp?id=" + value,
+			url: url + value,
 			dataType: "html",
 			success: function(data) {
 				data = data.trim();
 				
-				if (data == "none")
+				if (data == "00")
 				{
 					SetBackColor(myid,'');
-				} else if (data == "isId")
+					OutFocus(myid,'');
+				} else if (data == "01")
 				{
 					SetBackColor(myid,'rgba(255,0,0,0.2)');
-				} else if (data == "doId")
+					OutFocus(myid,'rgba(255,0,0,0.2)');
+				} else if (data == "02")
 				{
 					SetBackColor(myid,'rgba(0,0,255,0.2)');
-					//SetBackColor(myid,'');
+					OutFocus(myid,'');
+				}
+				
+				if (data == "01")
+				{
+					SetBackColor(myid,'rgba(255,0,0,0.2)');
 				}
 			},
 			complete: function(data) {
@@ -91,9 +107,17 @@ function NickCheck(myid)
 }
 */
 
+function OutFocus(myid, color)
+{
+	$(myid).focusout(function() {
+		SetBackColor(myid,color);
+	});
+}
+
 function SetBackColor(myid,color)
 {
 	$(myid).css('background-color',color);
+	return;
 }
 
 function FormCheck()

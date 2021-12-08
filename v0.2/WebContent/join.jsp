@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
 <script>
+var idok    = 0;
+var nickok  = 0;
+var emailok = 0;
 window.onload = function()
 {
 	document.join.id.focus();
@@ -10,13 +13,15 @@ window.onload = function()
 	ValueCheck(id);
 	//닉네임값 확인
 	ValueCheck(nickname);
+	//이메일값 확인
+	ValueCheck(email);
 }
 
 function ValueCheck(myid)
 {
 	$(myid).keyup(function() {
 		var value = $(this).val();
-		var url = "";
+		var kind = "";
 		
 		if (value == "")
 		{
@@ -25,15 +30,18 @@ function ValueCheck(myid)
 		
 		if (myid == document.join.id)
 		{
-			url = "idcheck.jsp?id=";
+			kind = "id";
+		} else if (myid == document.join.nickname)
+		{
+			kind = "nickname";
 		} else
 		{
-			url = "nickcheck.jsp?nick=";
+			kind = "email";
 		}
 		
 		$.ajax({
 			type: "get",
-			url: url + value,
+			url: "usercheck.jsp?kind=" + kind + "&value=" + value,
 			dataType: "html",
 			success: function(data) {
 				data = data.trim();
@@ -51,11 +59,6 @@ function ValueCheck(myid)
 					SetBackColor(myid,'rgba(0,0,255,0.2)');
 					OutFocus(myid,'');
 				}
-				
-				if (data == "01")
-				{
-					SetBackColor(myid,'rgba(255,0,0,0.2)');
-				}
 			},
 			complete: function(data) {
 				//alert('complete');
@@ -67,19 +70,34 @@ function ValueCheck(myid)
 	});
 }
 
+/* 포커스가 사라질 때 */
 function OutFocus(myid, color)
 {
 	$(myid).focusout(function() {
 		SetBackColor(myid,color);
 	});
+	
+	if(color == '')
+	{
+		if(myid == document.join.id) idok = 1;
+		else if(myid == document.join.nickname) nickok = 1;
+		else emailok = 1;
+	} else
+	{
+		if(myid == "id") idok = 0;
+		else if(myid == "nickname") nickok = 0;
+		else emailok = 0;
+	}
 }
 
+/* 배경색 바꾸기 */
 function SetBackColor(myid,color)
 {
 	$(myid).css('background-color',color);
 	return;
 }
 
+/* join 버튼 클릭 시 폼 체크 */
 function FormCheck()
 {
 	if(document.join.id.value == "")
@@ -129,6 +147,12 @@ function FormCheck()
 	{
 		alert('이메일을 입력해주세요.');
 		document.join.email.focus();
+		return false;
+	}
+	
+	if((idok+nickok+emailok) != 3)
+	{
+		alert('이미 사용중인 회원정보가 있습니다.');
 		return false;
 	}
 }

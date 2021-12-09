@@ -21,7 +21,8 @@ create table user
 	jop VARCHAR(100) comment '직업',
 	interest VARCHAR(255) comment '관심사',
 	intro TEXT comment '자기소개',
-	page VARCHAR(255) comment '홈페이지'
+	page VARCHAR(255) comment '홈페이지',
+	user_rank varchar(2) default 'U' comment '회원등급';
 );
 
 create table board

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.*" %>
 <%@ include file="./include/header.jsp" %>
 <%
 //인코딩 방식
@@ -48,7 +46,7 @@ if(kinds == "" || title == "" || post == "" || lang == "" || start_date == "" ||
 	<%
 }
 
-/*
+
 System.out.println(no);
 System.out.println(kinds);
 System.out.println(title);
@@ -56,50 +54,36 @@ System.out.println(post);
 System.out.println(lang);
 System.out.println(start_date);
 System.out.println(end_date);
-*/
 
-//시작날짜와 끝날짜를 Date로 변환
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-int end_time = (24*60*60*1000)-1000;
-Date s_date = new Date(sdf.parse(start_date).getTime());
-Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
-//System.out.println(s_date);
-//System.out.println(e_date);
-
-//오늘 날짜와 비교
-Date today = new Date();		//오늘날짜
-if (today.getTime() > s_date.getTime())
-{
-	state = "모집 대기";
-} else if(today.getTime() <= s_date.getTime() && today.getTime() < e_date.getTime())
-{
-	state = "모집 중";
-} else if (today.getTime() > e_date.getTime())
-{
-	state = "모집 완료";
-}
 
 //db를 다루기 위한 sql문
 String sql = "";
 
-sql += "insert into board (no,kinds,title,post,lang,start_date,end_date,state) ";
-sql += "value (";
-sql += "'" + no + "',";
-sql += "'" + kinds + "',";
-sql += "'" + title + "',";
-sql += "'" + post + "',";
-sql += "'" + lang + "',";
-sql += "'" + start_date + "',";
-sql += "'" + end_date + " 23:59:59',";
-sql += "'" + state + "')";
-dbms.RunSQL(sql);
-System.out.println(sql);
-
-bno = dbms.GetLastID("bno");
+for(int i=1; i<=121; i++)
+{
+	sql = "";
+	sql += "insert into board (no,kinds,title,post,lang,start_date,end_date) ";
+	sql += "value (";
+	sql += "'" + no + "',";
+	sql += "'" + kinds + "',";
+	sql += "'" + title.replace("'","''") + "',";
+	sql += "'" + post.replace("'","''") + "',";
+	sql += "'" + lang + "',";
+	sql += "'" + start_date + "',";
+	sql += "'" + end_date + " 23:59:59')";
+	dbms.RunSQL(sql);
+	System.out.println(sql);
+}
+sql = "select last_insert_id() as bno;";
+dbms.OpenQuery(sql);
+dbms.GetNext();
+bno = dbms.GetValue("bno");
+dbms.CloseQuery();
 %>
 <script>
 	alert('글쓰기가 완료 되었습니다.');
-	document.location = 'view.jsp?bno=' + bno;
+	<%
+	response.sendRedirect("view.jsp?bno=" + bno);
+	%>
 </script>
 <%@ include file="./include/footer.jsp" %>

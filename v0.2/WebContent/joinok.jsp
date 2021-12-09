@@ -2,11 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
 <%
+//인코딩 방식
+request.setCharacterEncoding("UTF-8");
+
 String id    = request.getParameter("id");       //아이디
 String pw    = request.getParameter("pw");       //비밀번호
 String nick  = request.getParameter("nickname"); //닉네임
 String email = request.getParameter("email");    //이메일
 String no    = null; //회원번호
+String rank  = "U";	 //권한
 
 if(id == null || pw == null || nick == null || email == null)
 {
@@ -57,7 +61,7 @@ if (isNext == true)
 		<%
 		//session.setAttribute("id", id);
 		//session.setAttribute("nickname", nick);
-		login = new LoginVo(no,id,pw);
+		login = new LoginVo(no,id,nick,rank);
 		session.setAttribute("login", login);
 		%>
 		alert('로그인 되었습니다.');

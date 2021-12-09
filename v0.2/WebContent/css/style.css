@@ -1,4 +1,4 @@
-/* ÃÊ±âÈ­ */
+/* ï¿½Ê±ï¿½È­ */
 html, body, h1, h2, h3, h4, h5, h6, span
 a, p, div, ul, li, input, form, textarea {
 	margin: 0;
@@ -54,6 +54,11 @@ textarea {
   resize: none;
 }
 
+td.ing {
+	color: #0973BA;
+	font-weight: bold;
+}
+
 .wrap {
 	max-width: 1250px;
 	margin: 0 auto; 
@@ -65,7 +70,7 @@ textarea {
 	clear: both;
 }
 
-/* ¹öÆ° */
+/* ï¿½ï¿½Æ° */
 .btn {
 	background: #556773;
 	color: #fff;
@@ -399,7 +404,7 @@ h2 {
 	margin-left: 20px;
 }
 
-/*** ½½¶óÀÌµå ¿¹½Ã! ½½¶óÀÌµå ¼º°ø½Ã Áö¿ò ***/
+/*** ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ***/
 .item a:hover {
 	background: rgba(0, 0, 0, 0.2);
 }
@@ -607,7 +612,7 @@ footer small {
 }
 
 .withus tbody td:nth-child(3) {
-	width: 80px;
+	width: 100px;
 }
 
 .withus tbody td:nth-child(4) {
@@ -712,36 +717,36 @@ footer small {
 	margin: 15px 0 20px;
 }
 
-.comment_wrap {
+.reply_wrap {
 	padding-top: 20px;
 }
 
-.comment {
+.reply {
 	display: inline-block;
 	width: 100%;
 	padding: 0 15px;
 }
 
-.comment form {
+.reply form {
 	padding-bottom: 20px;
 }
 
-.comment span:first-child {
+.reply span:first-child {
 	width: 70px;
 }
 
-.comment .date {
+.reply .date {
 	font-weight: normal;
 }
 
-.comment input[type=text] {
+.reply input[type=text] {
 	width: 55%;
 	max-width: 380px;
 	
 	margin-right: 20px;
 }
 
-.comment p {
+.reply p {
 	display: inline-block;
 	width: 55%;
 	max-width: 380px;
@@ -749,19 +754,19 @@ footer small {
 	margin-right: 20px;
 }
 
-.comment .btn {
+.reply .btn {
 	color: #556773;
 	border: 1px solid #556773;
 	background: #fff;
 }
 
-.comment .btn:hover {
+.reply .btn:hover {
 	color: #fff;
 	border: 1px solid #0973BA;
 	background: #0973BA;
 }
 
-.comment a:hover {
+.reply a:hover {
 	color: #556773;
 }
 

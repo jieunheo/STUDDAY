@@ -6,6 +6,7 @@ String no       = "";													//회원번호
 String id       = request.getParameter("id"); //아이디
 String pw       = request.getParameter("pw"); //비밀번호
 String nickname = "";													//닉네임
+String rank     = "";												  //권한
 
 if(id == null || pw == null)
 {
@@ -28,7 +29,7 @@ if(id == "" || pw == "")
 }
 
 String sql = "";
-sql += "select no,id,nickname ";
+sql += "select no,id,nickname,user_rank ";
 sql += "from user ";
 sql += "where id = '" + id + "' ";
 sql += "and pw = md5('" + pw + "') ";
@@ -47,10 +48,11 @@ if(dbms.GetNext() == false)
 {
 	no = dbms.GetValue("no");
 	nickname = dbms.GetValue("nickname");
+	rank = dbms.GetValue("user_rank");
 }
 dbms.CloseQuery();
 
-login = new LoginVo(no,id,pw);
+login = new LoginVo(no,id,nickname,rank);
 session.setAttribute("login", login);
 %>
 <script>

@@ -26,17 +26,14 @@ if(no == null)
 	<%
 }
 
-if(kinds == null || title == null || post == null || lang == null || start_date == null || end_date == null)
+if(kinds == null || title == null || post == null || lang == null)
 {
 	%>
-	<script>
-		alert('잘못된 접근입니다.');
-		document.location = 'index.jsp';
-	</script>
+
 	<%
 }
 
-if(kinds == "" || title == "" || post == "" || lang == "" || start_date == "" || end_date == "")
+if(kinds == "" || title == "" || post == "" || lang == "")
 {
 	%>
 	<script>
@@ -47,21 +44,31 @@ if(kinds == "" || title == "" || post == "" || lang == "" || start_date == "" ||
 }
 
 
-System.out.println(no);
-System.out.println(kinds);
-System.out.println(title);
-System.out.println(post);
-System.out.println(lang);
-System.out.println(start_date);
-System.out.println(end_date);
-
-
 //db를 다루기 위한 sql문
 String sql = "";
 
-for(int i=1; i<=121; i++)
+if(kinds.equals("1"))
 {
-	sql = "";
+	if(start_date == null || end_date == null)
+	{
+		%>
+		<script>
+		alert('잘못된 접근입니다.');
+		document.location = 'index.jsp';
+	</script>
+	<%
+	}
+	
+	if(start_date == "" || end_date == "")
+	{
+		%>
+		<script>
+		alert('잘못된 접근입니다.');
+		document.location = 'index.jsp';
+	</script>
+	<%
+	}
+
 	sql += "insert into board (no,kinds,title,post,lang,start_date,end_date) ";
 	sql += "value (";
 	sql += "'" + no + "',";
@@ -71,9 +78,20 @@ for(int i=1; i<=121; i++)
 	sql += "'" + lang + "',";
 	sql += "'" + start_date + "',";
 	sql += "'" + end_date + " 23:59:59')";
-	dbms.RunSQL(sql);
-	System.out.println(sql);
+} else
+{
+	sql += "insert into board (no,kinds,title,post,lang) ";
+	sql += "value (";
+	sql += "'" + no + "',";
+	sql += "'" + kinds + "',";
+	sql += "'" + title.replace("'","''") + "',";
+	sql += "'" + post.replace("'","''") + "',";
+	sql += "'" + lang + "')";
 }
+dbms.RunSQL(sql);
+System.out.println(sql);
+
+//마지막 게시물 번호
 sql = "select last_insert_id() as bno;";
 dbms.OpenQuery(sql);
 dbms.GetNext();
@@ -83,7 +101,7 @@ dbms.CloseQuery();
 <script>
 	alert('글쓰기가 완료 되었습니다.');
 	<%
-	response.sendRedirect("view.jsp?bno=" + bno);
+	response.sendRedirect("view.jsp?kinds=" + kinds + "&bno=" + bno);
 	%>
 </script>
 <%@ include file="./include/footer.jsp" %>

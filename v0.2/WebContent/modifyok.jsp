@@ -41,7 +41,7 @@ if(bno == "" || kinds == "" || title == "" || post == "" || lang == "" || start_
 	%>
 	<script>
 		alert('비어있는 항목이 있습니다.');
-		document.location = 'write.jsp';
+		document.location = 'index.jsp';
 	</script>
 	<%
 }

@@ -4,17 +4,37 @@
 <%
 String cur_page = request.getParameter("page");  //페이지번호
 String kinds    = request.getParameter("kinds"); //게시물종류
+String strkind  = ""; //게시물종류이름
+String strwriter = "작성자"; //작성자표시이름
+String strtitle  = "제목";  //글제목표시이름
 
 if(login == null)
 {
 	%>
 	<script>
 		alert('로그인 후 작성이 가능합니다.');
-		document.location = 'withus.jsp';
+		document.location = 'study.jsp';
 	</script>
 	<%
 } else
 {
+	switch (kinds)
+	{
+		case "0": strkind = "Notice"; break;
+		case "1": 
+			strkind = "With Us";
+			strwriter = "리더";
+			strtitle  = "스터디이름";
+			break;
+		case "2":
+			strkind = "Lecture";
+			strwriter = "추천자";
+			break;
+		case "3": strkind = "Reference"; break;
+		case "4": strkind = "Tip"; break;
+		case "5": strkind = "Q&A"; break;
+		case "9": strkind = "Talk"; break;
+	}
 %>
 
 <!-- 날짜 값을 받아오기 위한 달력 -->
@@ -121,29 +141,42 @@ function FormCheck()
 		<div class="sub_page">
 			<div>
 				<div class="category write">
-					<p>Study > With Us > Write</p>
+					<p>Study > <%= strkind %> > Write</p>
 				</div>
 				<div>
 					<form class="write" name="write" method="post" action="writeok.jsp" onsubmit="return FormCheck();">
 						<input type="hidden" name="kinds" value="<%= kinds %>">
-						<p><span>스터디 이름 </span><input type="text" id="title" name="title" placeholder="스터디원을 불러보세요!"></p>
-						<p><span>리더 </span><%= login.getNick() %></p>
-						<p>
-							<span>언어 </span>
-							<select name="lang">
-								<option value="java">JAVA</option>
-								<option value="sql">SQL</option>
-								<option value="js">Javascript</option>
-							</select>
-						</p>
-						<p>
-							<span>모집 기간 </span>
-							<input class="date" type="text" id="start_date" name="start_date" placeholder="ex)2021-12-01" readonly> ~ 
-							<input class="date" type="text" id="end_date" name="end_date" placeholder="ex)2021-12-10" readonly>
-						</p>
+						<p><span><%= strtitle %> </span><input type="text" id="title" name="title" placeholder="스터디원을 불러보세요!"></p>
+						<p><span><%= strwriter %> </span><%= login.getNick() %></p>
+						<%
+						if(!kinds.equals("9") || !kinds.equals("0"))
+						{
+							%>
+							<p>
+								<span>언어 </span>
+								<select name="lang">
+									<option value="java">JAVA</option>
+									<option value="sql">SQL</option>
+									<option value="js">Javascript</option>
+								</select>
+							</p>
+							<%
+						}
+						
+						if(kinds.equals("1"))
+						{
+							%>
+							<p>
+								<span>모집 기간 </span>
+								<input class="date" type="text" id="start_date" name="start_date" placeholder="ex)2021-12-01" readonly> ~ 
+								<input class="date" type="text" id="end_date" name="end_date" placeholder="ex)2021-12-10" readonly>
+							</p>
+							<%
+						}	
+						%>
 						<textarea class="post" name="post" placeholder="어떤 스터디인지 알려주세요!!"></textarea>
 						<div class="btn_wrap">
-							<a class="btn" href="withus.jsp?kinds=<%= kinds %>&page=<%= cur_page %>">뒤로가기</a>
+							<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>">뒤로가기</a>
 							<input class="btn" type="submit" value="글쓰기">
 						</div>
 					</form>

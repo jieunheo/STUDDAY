@@ -21,7 +21,7 @@ if(login == null)
 	%>
 	<script>
 		alert('로그인 후 작성이 가능합니다.');
-		document.location = 'withus.jsp';
+		document.location = 'study.jsp';
 	</script>
 	<%
 }
@@ -31,9 +31,30 @@ if(bno == null || bno == "")
 	%>
 	<script>
 	alert('잘못된 접근입니다.');
-	document.location = 'withus.jsp';
+	document.location = 'study.jsp';
 	</script>
 	<%
+}
+
+String strkind  = ""; //게시물종류이름
+String strwriter = "작성자"; //작성자표시이름
+String strtitle  = "제목";  //글제목표시이름
+switch (kinds)
+{
+	case "0": strkind = "Notice"; break;
+	case "1": 
+		strkind = "With Us";
+		strwriter = "리더";
+		strtitle  = "스터디이름";
+		break;
+	case "2":
+		strkind = "Lecture";
+		strwriter = "추천자";
+		break;
+	case "3": strkind = "Reference"; break;
+	case "4": strkind = "Tip"; break;
+	case "5": strkind = "Q&A"; break;
+	case "9": strkind = "Talk"; break;
 }
 
 String sql = "";
@@ -51,7 +72,7 @@ if(dbms.GetNext() == false)
 	%>
 	<script>
 		alert('없는 게시물입니다.');
-		document.location = 'withus.jsp';
+		document.location = 'study.jsp';
 	</script>
 	<%
 } else
@@ -193,8 +214,8 @@ function FormCheck()
 						<input type="hidden" name="bno" value="<%= bno %>">
 						<input type="hidden" name="kinds" value="<%= kinds %>">
 						<input type="hidden" name="page" value="<%= cur_page %>">
-						<p><span>스터디 이름 </span><input type="text" id="title" name="title" placeholder="스터디원을 불러보세요!" value="<%= title %>"></p>
-						<p><span>리더 </span><%= nickname %></p>
+						<p><span><%= strtitle %> </span><input type="text" id="title" name="title" placeholder="스터디원을 불러보세요!" value="<%= title %>"></p>
+						<p><span><%= strwriter %> </span><%= nickname %></p>
 						<p>
 							<span>언어 </span>
 							<select name="lang">

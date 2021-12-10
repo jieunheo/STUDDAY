@@ -8,11 +8,34 @@
 String bno 	    = request.getParameter("bno");   //게시물번호
 String cur_page = request.getParameter("page");  //페이지번호
 String kinds    = request.getParameter("kinds"); //게시물종류
+String strkind  = "";     //게시물종류이름
+String strwriter = "작성자"; //작성자표시이름
+String strtitle  = "제목";  //글제목표시이름
+if(cur_page == null) cur_page = "1";
+switch (kinds)
+{
+	case "0": strkind = "Notice"; break;
+	case "1": 
+		strkind = "With Us";
+		strwriter = "리더";
+		strtitle  = "스터디이름";
+		break;
+	case "2":
+		strkind = "Lecture";
+		strwriter = "추천자";
+		break;
+	case "3": strkind = "Reference"; break;
+	case "4": strkind = "Tip"; break;
+	case "5": strkind = "Q&A"; break;
+	case "9": strkind = "Talk"; break;
+}
+
 String no       = "";	//작성자번호
 String nickname = "";	//작성자닉네임
 String title = "";	//제목
 String post  = "";	//내용
 String lang  = "";	//언어
+String date  = "";	//작성날짜
 String start_date = "";	//시작날짜
 String end_date   = "";	//끝날짜
 String state      = ""; //모집상태
@@ -22,7 +45,7 @@ if(bno == null || bno.equals(""))
 	%>
 	<script>
 		alert('잘못된 접근입니다.');
-		document.location = 'withus.jsp';
+		document.location = 'study.jsp';
 	</script>
 	<%
 }
@@ -46,7 +69,7 @@ if(dbms.GetNext() == false)
 	%>
 	<script>
 		alert('없는 게시물입니다.');
-		document.location = 'withus.jsp';
+		document.location = 'study.jsp';
 	</script>
 	<%
 } else
@@ -56,39 +79,76 @@ if(dbms.GetNext() == false)
 	title = dbms.GetValue("title");
 	post = dbms.GetValue("post");
 	lang = dbms.GetValue("lang");
-	start_date = dbms.GetValue("start_date");
-	end_date = dbms.GetValue("end_date");
+	date = dbms.GetValue("date");
 	nickname = dbms.GetValue("nickname");
+	if(kinds.equals("1"))
+	{
+		start_date = dbms.GetValue("start_date");
+		end_date = dbms.GetValue("end_date");
+		
+		start_date = start_date.split(" ")[0];
+		end_date = end_date.split(" ")[0];
+		
+		int end_time = (24*60*60*1000)-1000;
+		Date s_date = new Date(sdf.parse(start_date).getTime());
+		Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
+		//System.out.println(s_date);
+		//System.out.println(e_date);
+
+		//오늘 날짜와 비교
+		if (today.getTime() < s_date.getTime())
+		{
+			state = "모집 대기";
+		} else if(today.getTime() >= s_date.getTime() && today.getTime() < e_date.getTime())
+		{
+			state = "모집 중";
+		} else if (today.getTime() > e_date.getTime())
+		{
+			state = "모집 완료";
+		}
+	}
 	dbms.CloseQuery();
-	
-	start_date = start_date.split(" ")[0];
-	end_date = end_date.split(" ")[0];
 	
 	if(lang.equals("java")) lang = "JAVA";
 	else if(lang.equals("sql")) lang = "SQL";
 	else if(lang.equals("js")) lang = "Javascript";
-
-	int end_time = (24*60*60*1000)-1000;
-	Date s_date = new Date(sdf.parse(start_date).getTime());
-	Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
-	//System.out.println(s_date);
-	//System.out.println(e_date);
-
-	//오늘 날짜와 비교
-	if (today.getTime() < s_date.getTime())
-	{
-		state = "모집 대기";
-	} else if(today.getTime() >= s_date.getTime() && today.getTime() < e_date.getTime())
-	{
-		state = "모집 중";
-	} else if (today.getTime() > e_date.getTime())
-	{
-		state = "모집 완료";
-	}
 }
 %>
 <script>
-	function FormCheck()
+	window.onload = function ()
+	{
+		ReadReply();
+	}
+	
+	function ReadReply()
+	{
+		$.ajax({
+			type: "get",
+			url: "reply.jsp?bno=<%= bno %>",
+			dataType: "html",
+			success: function(data) {
+				data = data.trim();
+				$('#reply_wrap').html(data);
+			}
+		});
+	}
+	
+	function ReplyDelete(myurl)
+	{
+		if(!confirm('댓글을 삭제하시겠습니까?')) return false;
+		
+		$.ajax({
+			type: "get",
+			url: myurl,
+			dataType: "html",
+			success: function(data) {
+				alert("댓글이 삭제되었습니다.");
+				ReadReply();
+			}
+		});
+	}
+	
+	function ReplyUpload()
 	{
 		if(document.reply.rpost.value == "")
 		{
@@ -96,12 +156,38 @@ if(dbms.GetNext() == false)
 			document.reply.rpost.focus();
 			return false;
 		}
-		return ReplyCheck();
-	}
-
-	function ReplyCheck()
-	{
+	
 		if(!confirm('댓글을 작성하시겠습니까?')) return false;
+		
+		<%
+		if(login != null)
+		{
+			%>
+			var param = "";
+			var value = $('#rpost').val();
+			var no = <%= login.getNo() %>;
+			var bno = <%= bno %>;
+			
+			param += "bno=" + bno + "&no=" + no + "&rpost=" + value;
+			if (bno == "" || no == "" || value == "")
+			{
+				return;
+			}
+			
+			$.ajax({
+				type: "get",
+				url: "replyupload.jsp",
+				data: param,
+				dataType: "html",
+				success: function(data) {
+					alert("댓글이 등록되었습니다.");
+					ReadReply();
+				}
+			});
+			return false;
+			<%
+		}
+		%>
 	}
 </script>
 <div class="main">
@@ -109,20 +195,32 @@ if(dbms.GetNext() == false)
 		<div class="sub_page">
 			<div>
 				<div class="category view">
-					<p>Study > With Us > View</p>
+					<p>Study > <%= strkind %> > View</p>
 				</div>
 				<div>
 					<div class="view">
 						<div>
-							<p><span>스터디 이름 </span><%= title %></p>
-							<p><span>리더 </span><%= nickname %></p>
+							<p><span><%= strtitle %> </span><%= title %></p>
+							<p><span><%= strwriter %> </span><%= nickname %></p>
 							<p><span>언어 </span><%= lang %></p>
-							<p><span>모집 여부 </span><%= state %></p>
-							<p><span>모집 기간 </span><%= start_date %> ~ <%= end_date %></p>
+							<%
+							if(kinds.equals("1"))
+							{
+								%>
+								<p><span>모집 여부 </span><%= state %></p>
+								<p><span>모집 기간 </span><%= start_date %> ~ <%= end_date %></p>
+								<%
+							} else
+							{
+								%>
+								<p><span>작성일 </span><%= date.split(" ")[0] %></p>
+								<%
+							}
+							%>
 							<div class="line"></div>
 							<div class="content"><%= post %></div>
 							<div class="btn_wrap">
-								<a class="btn" href="withus.jsp?kinds=<%= kinds %>&page=<%= cur_page %>">뒤로가기</a>
+								<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>">뒤로가기</a>
 								<%
 								if (login != null)
 								{
@@ -142,7 +240,7 @@ if(dbms.GetNext() == false)
 								%>
 							</div>
 						</div>
-						<div class="reply_wrap">
+						<div id="reply_wrap" class="reply_wrap">
 							<div class="line"></div>
 							<%
 							if(login != null)
@@ -151,42 +249,21 @@ if(dbms.GetNext() == false)
 								<div class="reply now">
 									<form name="reply" onsubmit="return FormCheck();" method="post" action="view.jsp">
 										<input type="hidden" name="bno" value="<%= bno %>">
+										<input type="hidden" name="no" value="<%= login.getNo() %>">
 										<input type="hidden" name="kinds" value="<%= kinds %>">
 										<input type="hidden" name="page" value="<%= cur_page %>">
 										<input type="hidden" name="rdate" value="<%= today %>">
 										<span><%= login.getNick() %></span>
-										<input type="text" name="rpost" placeholder="댓글을 입력해주세요">
+										<input type="text" id="rpost" name="rpost" placeholder="댓글을 입력해주세요">
 										<span class="date"><%= sdf.format(today) %></span>
 										<input class="btn" type="submit" value="댓글달기">
 									</form>
 								</div>
 								<%
 							}
-						
-							sql = "";
-							sql += "select rno,bno,r.no,rpost,rdate,u.nickname ";
-							sql += "from reply as r ";
-							sql += "inner join user as u ";
-							sql += "on r.no = u.no ";
-							sql += "where bno = '" + bno + "' ";
-							sql += "order by rno desc ";
-							dbms.OpenQuery(sql);
-							while(dbms.GetNext())
-							{
-								String rno         = dbms.GetValue("rno");      //댓글번호
-								String reply_nick  = dbms.GetValue("nickname"); //댓글 작성자 닉네임
-								String rpost       = dbms.GetValue("rpost");    //댓글내용
-								String rdate       = dbms.GetValue("rdate");    //댓글 작성일
-								%>
-								<div class="reply">
-									<span><%= reply_nick %></span>
-									<p><%= rpost %></p>
-									<span class="date"><%= rdate.split(" ")[0] %></span>
-									<a href=#>삭제</a>
-								</div>
-								<%
-							}
 							%>
+							
+							<div id="replyalready" class="replyalready"></div>
 						</div>
 					</div>
 				</div>

@@ -20,7 +20,7 @@
 					} else
 					{
 						%>
-						<a href="withus.jsp">동료 구하기</a>
+						<a href="study.jsp">동료 구하기</a>
 						<%
 					}
 					%>
@@ -31,19 +31,19 @@
 	
 	<div class="icons">
 		<div class="wrap">
-			<a class="icon" href="withus.jsp">
+			<a class="icon" href="study.jsp?kinds=1">
 				<img alt="How To" src="./img/icon_how.png">
 				<p>How To</p>
 			</a>
-			<a class="icon" href="javascript:ready();">
+			<a class="icon" href="study.jsp?kinds=3">
 				<img alt="How To" src="./img/icon_ref.png">
 				<p>Ref</p>
 			</a>
-			<a class="icon" href="javascript:ready();">
+			<a class="icon" href="study.jsp?kinds=4">
 				<img alt="How To" src="./img/icon_tip.png">
 				<p>Tip</p>
 			</a>
-			<a class="icon" href="javascript:ready();">
+			<a class="icon" href="study.jsp?kinds=5">
 				<img alt="How To" src="./img/icon_qa.png">
 				<p>Q&A</p>
 			</a>

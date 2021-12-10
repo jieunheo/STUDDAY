@@ -38,20 +38,20 @@ LoginVo login = (LoginVo)session.getAttribute("login");	//로그인정보
 					<ul>
 						<li><a href="javascript:ready();">How To</a></li>
 						<li>
-							<a href="withus.jsp">Study</a>
+							<a href="study.jsp">Study</a>
 							<ul class="sub_nav">
-								<li><a href="withus.jsp">With Us</a></li>
-								<li><a href=javascript:ready();>Lecture</a></li>
-								<li><a href="javascript:ready();">Reference</a></li>
-								<li><a href="javascript:ready();">Tip</a></li>
-								<li><a href="javascript:ready();">Q&A</a></li>
+								<li><a href="study.jsp?kinds=1">With Us</a></li>
+								<li><a href="study.jsp?kinds=2">Lecture</a></li>
+								<li><a href="study.jsp?kinds=3">Reference</a></li>
+								<li><a href="study.jsp?kinds=4">Tip</a></li>
+								<li><a href="study.jsp?kinds=5">Q&A</a></li>
 							</ul>
 						</li>
-						<li><a href="talk.jsp">Talk</a></li>
+						<li><a href="study.jsp?kinds=9">Talk</a></li>
 						<li>
-							<a href="notice.jsp">Contact</a>
+							<a href="study.jsp?kinds=0">Contact</a>
 							<ul class="sub_nav">
-								<li><a href="notice.jsp">Notice</a></li>
+								<li><a href="study.jsp?kinds=0">Notice</a></li>
 								<li><a href="request.jsp">Request</a></li>
 							</ul>
 						</li>

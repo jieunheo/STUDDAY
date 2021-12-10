@@ -8,7 +8,7 @@ if( login == null )
 	%>
 	<script>
 		alert("잘못된 접근입니다.");
-		document.location = "withus.jsp";
+		document.location = "study.jsp";
 	</script>		
 	<%
 	return;
@@ -25,7 +25,7 @@ if(bno == null || bno.equals(""))
 	%>
 	<script>
 		alert("잘못된 접근입니다.");
-		document.location = "withus.jsp?";
+		document.location = "study.jsp?";
 	</script>
 	<%
 	return;
@@ -43,7 +43,7 @@ if( dbms.GetNext() == false)
 	%>
 	<script>
 		alert("삭제 권한이 없습니다.");
-		document.location = "withus.jsp?kinds=<%= kinds %>";
+		document.location = "study.jsp?kinds=<%= kinds %>";
 	</script>
 	<%
 	return;	
@@ -79,7 +79,7 @@ dbms.RunSQL(sql);
 <!-- 컨텐츠 출력 되는곳 -------------------------- -->
 <script>
 	alert("글이 삭제되었습니다.");
-	document.location = "withus.jsp?kinds=<%= kinds %>";
+	document.location = "study.jsp?kinds=<%= kinds %>";
 </script>
 <!-- 컨텐츠 출력 되는곳 -------------------------- -->
 <%@ include file="./include/footer.jsp" %>

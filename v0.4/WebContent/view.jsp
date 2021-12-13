@@ -74,24 +74,24 @@ if(dbms.GetNext() == false)
 	<%
 } else
 {
-	no = dbms.GetValue("no");
+	no    = dbms.GetValue("no");
 	kinds = dbms.GetValue("kinds");
 	title = dbms.GetValue("title");
-	post = dbms.GetValue("post");
-	lang = dbms.GetValue("lang");
-	date = dbms.GetValue("date");
+	post  = dbms.GetValue("post");
+	lang  = dbms.GetValue("lang");
+	date  = dbms.GetValue("date");
 	nickname = dbms.GetValue("nickname");
 	if(kinds.equals("1"))
 	{
 		start_date = dbms.GetValue("start_date");
-		end_date = dbms.GetValue("end_date");
+		end_date   = dbms.GetValue("end_date");
 		
 		start_date = start_date.split(" ")[0];
-		end_date = end_date.split(" ")[0];
+		end_date   = end_date.split(" ")[0];
 		
 		int end_time = (24*60*60*1000)-1000;
-		Date s_date = new Date(sdf.parse(start_date).getTime());
-		Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
+		Date s_date  = new Date(sdf.parse(start_date).getTime());
+		Date e_date  = new Date(sdf.parse(end_date).getTime()+end_time);
 		//System.out.println(s_date);
 		//System.out.println(e_date);
 
@@ -109,9 +109,9 @@ if(dbms.GetNext() == false)
 	}
 	dbms.CloseQuery();
 	
-	if(lang.equals("java")) lang = "JAVA";
+	if(lang.equals("java"))     lang = "JAVA";
 	else if(lang.equals("sql")) lang = "SQL";
-	else if(lang.equals("js")) lang = "Javascript";
+	else if(lang.equals("js"))  lang = "Javascript";
 }
 %>
 <script>
@@ -180,7 +180,7 @@ if(dbms.GetNext() == false)
 				data: param,
 				dataType: "html",
 				success: function(data) {
-					alert("댓글이 등록되었습니다.");
+					//alert("댓글이 등록되었습니다.");
 					ReadReply();
 				}
 			});
@@ -215,43 +215,7 @@ if(dbms.GetNext() == false)
 							</div>
 						</div>
 						
-						<div id="reply_wrap" class="reply_wrap">
-							<div class="line"></div>
-							<div class="reply now">
-								<form name="reply" onsubmit="return FormCheck();" method="post" action="view.jsp">
-									<input type="hidden" name="bno" value="<%= bno %>">
-									<input type="hidden" name="no" value="<%= login.getNo() %>">
-									<input type="hidden" name="kinds" value="<%= kinds %>">
-									<input type="hidden" name="page" value="<%= cur_page %>">
-									<input type="hidden" name="rdate" value="<%= today %>">
-									<span><%= login.getNick() %></span>
-									<input type="text" id="rpost" name="rpost" placeholder="댓글을 입력해주세요">
-									<span class="date"><%= sdf.format(today) %></span>
-									<input class="btn" type="submit" value="댓글달기">
-								</form>
-							</div>
-							
-							<div id="replyalready" class="replyalready">
-								<div class="comment">
-									<span>홍선생</span>
-									<p>아주 좋아요</p>
-									<span class="date">2021-12-03</span>
-									<a href=#>삭제</a>
-								</div>
-								<div class="comment">
-									<span>홍선생</span>
-									<p>아주 좋아요</p>
-									<span class="date">2021-12-03</span>
-									<a href=#>삭제</a>
-								</div>
-								<div class="comment">
-									<span>홍선생</span>
-									<p>아주 좋아요</p>
-									<span class="date">2021-12-03</span>
-									<a href=#>삭제</a>
-								</div>
-							</div>
-						</div>
+						<div id="reply_wrap" class="reply_wrap"></div>
 					</div>
 				</div>
 			</div>

@@ -159,8 +159,6 @@ if (end_block >= max_page)
 			int end_time = (24*60*60*1000)-1000;
 			Date s_date = new Date(sdf.parse(start_date).getTime());
 			Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
-			//System.out.println(s_date);
-			//System.out.println(e_date);
 
 			//오늘 날짜와 비교
 			Date today = new Date();		//오늘날짜

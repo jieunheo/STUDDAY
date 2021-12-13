@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./config/dbopen.jsp"%>
+<%@ include file="./config/dbopen.jsp" %>
 <%
 String kind = request.getParameter("kind"); //검사할 값
 String value   = request.getParameter("value");   //값
@@ -26,3 +26,4 @@ if(dbms.GetNext() == true)
 	return;
 }
 %>
+<%@ include file="./config/dbclose.jsp" %>

@@ -31,7 +31,7 @@ String state      = ""; //모집상태
 //시작날짜와 끝날짜를 Date로 변환
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-//kinds 값 분석(0/1/2/3/4/5/6/9)
+//kinds 값 분석(0/1/2/3/4/5/9)
 kinds = request.getParameter("kinds");
 if (kinds == null)	kinds = "1"; //값이 없으면 1로
 

@@ -8,9 +8,12 @@
 String bno 	     = request.getParameter("bno");   //게시물번호
 String cur_page  = request.getParameter("page");  //페이지번호
 String kinds     = request.getParameter("kinds"); //게시물종류
+String key       = request.getParameter("key");   //검색어
+
 String strkind   = "";     //게시물종류이름
 String strwriter = "작성자"; //작성자표시이름
 String strtitle  = "제목";  //글제목표시이름
+
 if(cur_page == null) cur_page = "1";
 switch (kinds)
 {
@@ -56,7 +59,8 @@ Date today = new Date();		//오늘날짜
 
 String sql = "";
 
-sql += "select bno,b.no,kinds,title,post,lang,date,views,date(start_date) as start_date,date(end_date) as end_date, ";
+sql += "select bno,b.no,kinds,title,post,lang,date,views,";
+sql += "date(start_date) as start_date,date(end_date) as end_date, ";
 sql += "u.id,u.nickname,u.user_rank ";
 sql += "from board as b ";
 sql += "inner join user as u ";
@@ -69,50 +73,53 @@ if(dbms.GetNext() == false)
 	%>
 	<script>
 		alert('없는 게시물입니다.');
-		document.location = 'study.jsp';
+		window.location = 'study.jsp';
 	</script>
 	<%
-} else
-{
-	no    = dbms.GetValue("no");
-	kinds = dbms.GetValue("kinds");
-	title = dbms.GetValue("title");
-	post  = dbms.GetValue("post");
-	lang  = dbms.GetValue("lang");
-	date  = dbms.GetValue("date");
-	nickname = dbms.GetValue("nickname");
-	if(kinds.equals("1"))
-	{
-		start_date = dbms.GetValue("start_date");
-		end_date   = dbms.GetValue("end_date");
-		
-		start_date = start_date.split(" ")[0];
-		end_date   = end_date.split(" ")[0];
-		
-		int end_time = (24*60*60*1000)-1000;
-		Date s_date  = new Date(sdf.parse(start_date).getTime());
-		Date e_date  = new Date(sdf.parse(end_date).getTime()+end_time);
-		//System.out.println(s_date);
-		//System.out.println(e_date);
-
-		//오늘 날짜와 비교
-		if (today.getTime() < s_date.getTime())
-		{
-			state = "모집 대기";
-		} else if(today.getTime() >= s_date.getTime() && today.getTime() < e_date.getTime())
-		{
-			state = "모집 중";
-		} else if (today.getTime() > e_date.getTime())
-		{
-			state = "모집 완료";
-		}
-	}
-	dbms.CloseQuery();
-	
-	if(lang.equals("java"))     lang = "JAVA";
-	else if(lang.equals("sql")) lang = "SQL";
-	else if(lang.equals("js"))  lang = "Javascript";
 }
+
+no    = dbms.GetValue("no");
+title = dbms.GetValue("title");
+post  = dbms.GetValue("post");
+lang  = dbms.GetValue("lang");
+date  = dbms.GetValue("date");
+nickname = dbms.GetValue("nickname");
+
+if(kinds.equals("1"))
+{
+	start_date = dbms.GetValue("start_date");
+	end_date   = dbms.GetValue("end_date");
+	
+	start_date = start_date.split(" ")[0];
+	end_date   = end_date.split(" ")[0];
+	
+	int end_time = (24*60*60*1000)-1000;
+	Date s_date  = new Date(sdf.parse(start_date).getTime());
+	Date e_date  = new Date(sdf.parse(end_date).getTime()+end_time);
+
+	//오늘 날짜와 비교
+	if (today.getTime() < s_date.getTime())
+	{
+		state = "모집 대기";
+	} else if(today.getTime() >= s_date.getTime() && today.getTime() < e_date.getTime())
+	{
+		state = "모집 중";
+	} else if (today.getTime() > e_date.getTime())
+	{
+		state = "모집 완료";
+	}
+} else if ( !(kinds.equals("9") || kinds.equals("0")) )
+{
+	switch(lang)
+	{
+		case "java": lang = "JAVA"; break;
+		case "sql": lang = "SQL"; break;
+		case "js": lang = "Javascript"; break;
+	}
+}
+
+post = post.replace("\n", "<br>");
+dbms.CloseQuery();
 %>
 <script>
 	window.onload = function ()
@@ -142,7 +149,6 @@ if(dbms.GetNext() == false)
 			url: myurl,
 			dataType: "html",
 			success: function(data) {
-				alert("댓글이 삭제되었습니다.");
 				ReadReply();
 			}
 		});
@@ -165,8 +171,8 @@ if(dbms.GetNext() == false)
 			%>
 			var param = "";
 			var value = $('#rpost').val();
-			var no = <%= login.getNo() %>;
-			var bno = <%= bno %>;
+			var no    = <%= login.getNo() %>;
+			var bno   = <%= bno %>;
 			
 			param += "bno=" + bno + "&no=" + no + "&rpost=" + value;
 			if (bno == "" || no == "" || value == "")
@@ -202,16 +208,35 @@ if(dbms.GetNext() == false)
 						<div>
 							<p><span><%= strtitle %> </span><%= title %></p>
 							<p><span><%= strwriter %> </span><%= nickname %></p>
-							<p><span>언어 </span><%= lang %></p>
-							<p><span>모집 여부 </span><%= state %></p>
-							<p><span>모집 기간 </span><%= start_date %> ~ <%= end_date %></p>
+							<%
+							if( !(kinds.equals("9") || kinds.equals("0")) )
+							{
+								%>
+								<p><span>언어 </span><%= lang %></p>
+								<%
+							}
+							
+							if(kinds.equals("1"))
+							{
+								%>
+								<p><span>모집 여부 </span><%= state %></p>
+								<p><span>모집 기간 </span><%= start_date %> ~ <%= end_date %></p>
+								<%
+							} else
+							{
+								date = date.split(" ")[0];
+								%>
+								<p><span>작성일 </span><%= date %></p>
+								<%
+							}
+							%>
 							<div class="line"></div>
 							<div class="content"><%= post %></div>
 							
 							<div class="btn_wrap">
-								<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>">뒤로가기</a>
-								<a class="btn" href="modify.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&bno=<%= bno %>">글수정</a>
-								<a class="btn" href="delete.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&bno=<%= bno %>" onclick="return confirm('삭제하시겠습니까?');">글삭제</a>
+								<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>">뒤로가기</a>
+								<a class="btn" href="modify.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>">글수정</a>
+								<a class="btn" href="delete.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>" onclick="return confirm('삭제하시겠습니까?');">글삭제</a>
 							</div>
 						</div>
 						

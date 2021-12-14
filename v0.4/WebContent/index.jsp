@@ -1,6 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
+<%
+//값 받아오기
+String bno 	    = ""; //게시물번호
+String title    = "";	//제목
+String lang     = "";	//언어
+String start_date = "";	//시작날짜
+String end_date   = "";	//끝날짜
+String state      = ""; //모집상태
+String key        = ""; //검색
+
+String sql = "";
+//where절
+String str_where = "";
+str_where += "where kinds = '1' ";
+str_where += "and end_date > now() ";
+
+sql += "select bno,no,kinds,title,lang,date,views,";
+sql += "start_date,end_date ";
+sql += "from board ";
+sql += str_where;
+sql += "order by bno desc ";
+//(7)페이지 당 가져올 게시물 limit
+sql += "limit 8;";
+dbms.OpenQuery(sql);
+%>
+<script>
+/*
+	var imgs;
+	var img_count;
+	var img_position = 1;
+	
+	window.onload = function ()
+	{
+		imgs = $("#items");
+		img_count = imgs.children().length;
+	}
+	
+	function PrevItem()
+	{
+		if(1<img_position){
+			imgs.animate({
+				left:'+=200px'
+			});
+			img_position--;
+  	}
+	}
+	function PrevItem()
+	{
+		if(img_count>img_position){
+			imgs.animate({
+				left:'-=200px'
+			});
+			img_position++;
+		}
+	}
+	*/
+</script>
 <div class="main">
 	<div class="banner">
 		<div class="wrap">
@@ -61,17 +118,22 @@
 				<p>마음에 드는 스터디를 찾아 함께 해보세요 :)</p>
 			</div>
 			<div>
-				<a class="before_btn" href="#"></a>
+				<a class="before_btn" href="javscript:PrevItem();"></a>
 				<div class="overflow">
-					<ul>
+					<ul id="items">
 					<%
-					for (int i = 1; i<=8; i++)
+					//withus의 최근 게시글 8개 불러오기
+					while (dbms.GetNext())
 					{
+						bno      = dbms.GetValue("bno");
+						title      = dbms.GetValue("title");
+						lang       = dbms.GetValue("lang");
+						
 						%>
 						<li class="item">
-							<a href="view.jsp">
-								<div class="thumb thumb<%= (i%3)+1 %>"></div>
-								<p><%= i %> 스터디원 구합니다.</p>
+							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
+								<div class="thumb thumb<%if(lang.equals("java")){%>1<%}else if(lang.equals("sql")){%>2<%}else{%>3<%}%>"></div>
+								<p><%= title %></p>
 							</a>
 						</li>
 						<%
@@ -79,7 +141,7 @@
 					%>
 					</ul>
 				</div>
-				<a class="after_btn" href="#"></a>
+				<a class="after_btn" href="javscript:NextItem();"></a>
 			</div>
 		</div>
 	</div>

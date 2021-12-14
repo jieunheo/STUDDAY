@@ -49,11 +49,11 @@ LoginVo login = (LoginVo)session.getAttribute("login");	//로그인정보
 								<li><a href="study.jsp?kinds=5">Q&A</a></li>
 							</ul>
 						</li>
-						<li><a href="talk.jsp">Talk</a></li>
+						<li><a href="study.jsp?kinds=9">Talk</a></li>
 						<li>
-							<a href="notice.jsp">Contact</a>
+							<a href="study.jsp?kinds=0">Contact</a>
 							<ul class="sub_nav">
-								<li><a href="notice.jsp">Notice</a></li>
+								<li><a href="study.jsp?kinds=0">Notice</a></li>
 								<li><a href="request.jsp">Request</a></li>
 							</ul>
 						</li>

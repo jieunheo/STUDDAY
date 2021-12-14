@@ -30,6 +30,7 @@ Date today = new Date();		//오늘날짜
 %>
 
 <%
+//로그인 해야 댓글 작성 가능
 if(login != null)
 {
 	%>
@@ -48,6 +49,7 @@ if(login != null)
 
 String sql = "";
 
+//댓글 출력
 sql = "";
 sql += "select rno,bno,r.no,rpost,rdate,u.nickname ";
 sql += "from reply as r ";

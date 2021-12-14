@@ -363,18 +363,17 @@ h2 {
 	left: 0;
 }
 
-.before_btn:hover + .overflow ul {
-	left: -980px;
-	transition-property: left;
-	transition-duration: 8s;
-}
-
 .item {
 	width: 200px;
 	height: 240px;
 	background: #fff;
 	
 	margin: 0 20px;
+}
+
+.item a {
+	width: 100%;
+	height: 100%;
 }
 
 .item .thumb {
@@ -400,27 +399,22 @@ h2 {
 }
 
 .item p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 80%;
 	margin-left: 20px;
+	text-align: left;
 }
 
-/*** �����̵� ����! �����̵� ������ ���� ***/
 .item a:hover {
 	background: rgba(0, 0, 0, 0.2);
 }
-/*******************************/
 
 h3 {
 	font-size: 32px;
 	margin-bottom: 10px;
-}
-
-.item a {
-	width: 100%;
-	height: 100%;
-}
-
-.item p {
-	text-align: left;
 }
 
 /* request */
@@ -471,37 +465,6 @@ h3 {
 .form input[type=button]:hover {
 	background: #0973ba;
 }
-
-/* to top */
-/*
-.to_top {
-  position:fixed;
-  bottom:16px;
-  right:20px;
-  
-  width:50px;
-  height:50px;
-  border-radius: 10px;
-  text-indent: 100%;    
-  white-space: nowrap;    
-  overflow: hidden;
-  background: #0973ba;
-	
-	z-index: 999;
-}
-
-.to_top:before {
-  content:'';
-  width:16px;
-  height:16px;
-  position:absolute;
-  top:20px;
-  left:25px;
-  border-left:3px solid #fff;
-  border-top:3px solid #fff;
-  transform:translateX(-50%) rotate(45deg);
-}
-*/
 
 /* footer */
 footer {
@@ -576,9 +539,18 @@ footer small {
 	border-bottom: 3px solid #0973BA;
 }
 
+.search {
+	display: inline-block;
+	margin: 0 auto 10px;
+}
+
+.search input[type=text]{
+	width: 300px;
+}
+
 .study table {
 	width: 100%;
-	margin: 0 auto 20px;
+	margin: 0 auto 10px;
 	border-collapse: collapse;
 	border-bottom: 1px solid #84A1B3;
 }
@@ -606,7 +578,15 @@ footer small {
 	width: 60px;
 }
 
-.withus tbody td:nth-child(2) {
+.study thead th:nth-child(4) {
+	width: 100px;
+}
+
+.study thead th:nth-child(5) {
+	width: 100px;
+}
+
+.study tbody td:nth-child(2) {
 	text-align: left;
 }
 
@@ -614,28 +594,17 @@ footer small {
 	width: 200px;
 }
 
-.withus thead th:nth-child(4) {
-	width: 90px;
-}
-
-.withus thead th:nth-child(5) {
-	width: 100px;
-}
-
-.recture tbody td:nth-child(2) {
-	text-align: left;
-}
-
 .recture thead th:nth-child(3) {
 	width: 100px;
 }
 
-.recture tbody td:nth-child(4) {
-	width: 100px;
+.table_btn_wrap {
+	position: relative;
 }
 
-.recture tbody td:nth-child(5) {
-	width: 100px;
+.table_btn_wrap a {
+	position: absolute;
+	right: 0;
 }
 
 .paging a {

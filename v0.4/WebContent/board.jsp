@@ -29,6 +29,7 @@ String date     = "";	//작성일
 String start_date = "";	//시작날짜
 String end_date   = "";	//끝날짜
 String state      = ""; //모집상태
+String key        = ""; //검색
 
 //시작날짜와 끝날짜를 Date로 변환
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,6 +37,14 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //kinds 값 분석(0/1/2/3/4/5/9)
 kinds = request.getParameter("kinds");
 if (kinds == null)	kinds = "1"; //값이 없으면 1로
+
+//key 값 분석
+key = request.getParameter("key");
+
+//where절
+String str_where = "";
+str_where += "where kinds = '" + kinds + "' ";
+if(key != null) str_where += "and title like '%" + key + "%' ";
 
 String strkind  = ""; //게시물종류이름
 String strwriter = "작성자";  //작성자표시이름
@@ -79,7 +88,7 @@ String sql = "";
 //(1)게시물 갯수 확인
 sql = "";
 sql += "select count(*) as count from board ";
-sql += "where kinds = '" + kinds + "' ";
+sql += str_where;
 dbms.OpenQuery(sql);
 dbms.GetNext();
 total = dbms.GetInteger("count");
@@ -94,12 +103,13 @@ if ((total % paging_list) != 0) max_page++; //나머지가 있는 경우 +1
 
 //게시물 목록 조회
 sql = "";
-sql += "select bno,b.no,kinds,title,lang,date,views,date(start_date) as start_date,date(end_date) as end_date, ";
+sql += "select bno,b.no,kinds,title,lang,date,views,";
+sql += "date(start_date) as start_date,date(end_date) as end_date, ";
 sql += "u.id,u.nickname,u.user_rank ";
 sql += "from board as b ";
 sql += "inner join user as u ";
 sql += "on b.no = u.no ";
-sql += "where kinds = '" + kinds + "' ";
+sql += str_where;
 sql += "order by bno desc ";
 //(7)페이지 당 가져올 게시물 limit
 sql += "limit " + start_no + ", " + paging_list + ";";
@@ -130,8 +140,13 @@ if (end_block >= max_page)
 				<%
 			} else
 			{
+				if( !(kinds.equals("0") || kinds.equals("9")) )
+				{
+					%>
+					<th>언어</th>
+					<%
+				}
 				%>
-				<th>언어</th>
 				<th>날짜</th>
 				<%
 			}
@@ -142,87 +157,112 @@ if (end_block >= max_page)
 	<tbody>
 	<%
 	int seqno = total - start_no; //total - ((cur_page - 1) * 10);
-	while (dbms.GetNext() == true)
+	if(dbms.GetNext())
 	{
-		bno        = dbms.GetValue("bno");
-		no         = dbms.GetValue("no");
-		nickname   = dbms.GetValue("nickname");
-		kinds      = dbms.GetValue("kinds");
-		title      = dbms.GetValue("title");
-		lang       = dbms.GetValue("lang");
-		date       = dbms.GetValue("date");
-		start_date = dbms.GetValue("start_date");
-		end_date   = dbms.GetValue("end_date");
-		
-		if(kinds.equals("1"))
+		do
 		{
-			int end_time = (24*60*60*1000)-1000;
-			Date s_date = new Date(sdf.parse(start_date).getTime());
-			Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
-
-			//오늘 날짜와 비교
-			Date today = new Date();		//오늘날짜
-			if (today.getTime() < s_date.getTime())
+			bno        = dbms.GetValue("bno");
+			no         = dbms.GetValue("no");
+			nickname   = dbms.GetValue("nickname");
+			kinds      = dbms.GetValue("kinds");
+			title      = dbms.GetValue("title");
+			lang       = dbms.GetValue("lang");
+			date       = dbms.GetValue("date");
+			start_date = dbms.GetValue("start_date");
+			end_date   = dbms.GetValue("end_date");
+			
+			if( !(kinds.equals("0") || kinds.equals("9")) )
 			{
-				state = "모집 대기";
-			} else if(today.getTime() >= s_date.getTime() && today.getTime() < e_date.getTime())
-			{
-				state = "모집 중";
-			} else if (today.getTime() > e_date.getTime())
-			{
-				state = "모집 완료";
+				if(lang.equals("java"))     lang = "JAVA";
+				else if(lang.equals("sql")) lang = "SQL";
+				else if(lang.equals("js"))  lang = "Javascript";
 			}
-		}
-		%>
-		<tr>
-			<td><%= seqno-- %></td>
-			<td><a href="view.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&bno=<%= bno %>"><%= title %></a></td>
-			<%
+			
 			if(kinds.equals("1"))
 			{
-				%>
-				<td><%= start_date %> ~ <%= end_date %></td>
-				<td <% if(state.equals("모집 중")){%>class="ing"<%}%>><%= state %></td>
-				<%
-			} else
-			{
-				%>
-				<td><%= lang %></td>
-				<td><%= date.split(" ")[0] %></td>
-				<%
+				int end_time = (24*60*60*1000)-1000;
+				Date s_date = new Date(sdf.parse(start_date).getTime());
+				Date e_date = new Date(sdf.parse(end_date).getTime()+end_time);
+	
+				//오늘 날짜와 비교
+				Date today = new Date();		//오늘날짜
+				if (today.getTime() < s_date.getTime())
+				{
+					state = "모집 대기";
+				} else if(today.getTime() >= s_date.getTime() && today.getTime() < e_date.getTime())
+				{
+					state = "모집 중";
+				} else if (today.getTime() > e_date.getTime())
+				{
+					state = "모집 완료";
+				}
 			}
 			%>
-			<td><%= nickname %></td>
+			<tr>
+				<td><%= seqno-- %></td>
+				<td><a href="view.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>"><%= title %></a></td>
+				<%
+				if(kinds.equals("1"))
+				{
+					%>
+					<td><%= start_date %> ~ <%= end_date %></td>
+					<td <% if(state.equals("모집 중")){%>class="ing"<%}%>><%= state %></td>
+					<%
+				} else
+				{
+					if(!(kinds.equals("9") || kinds.equals("0")) )
+					{
+						%>
+						<td><%= lang %></td>
+						<%
+					}
+					%>
+					<td><%= date.split(" ")[0] %></td>
+					<%
+				}
+				%>
+				<td><%= nickname %></td>
+			</tr>
+			<%
+		} while (dbms.GetNext() == true);
+	} else {
+		%>
+		<tr>
+			<td colspan="5">게시물이 없습니다.</td>
 		</tr>
 		<%
 	}
 	%>
 	</tbody>
 </table>
-<%
-if(login != null)
-{
-	%>
-	<div class="btn_wrap">
-		<a class="btn" href="write.jsp?kinds=<%= kinds %>&page=<%= cur_page %>">글쓰기</a>
-	</div>
-	<%
-}
-%>
+<div class="table_btn_wrap">
+	<form class="search" name="search" method="get" action="">
+		<input id="key" type="text" name="key" value="">
+		<input class="btn" type="submit" value="검색">
+		<%
+		if(login != null)
+		{
+			%>
+			<a class="btn" href="write.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>">글쓰기</a>
+			<%
+		}
+		%>
+	</form>
+</div>
 <div class="paging">
 	<ul>
 		<%
 		//(13)이전 블럭 출력
 		if( start_block >= page_cut ) //시작 페이지가 페이지 컷 기준보다 크면
 		{
-			%><li><a href="study.jsp?kinds=<%= kinds %>&page=<%= start_block - 1 %>">◀</a></li><%
+			%><li><a href="study.jsp?kinds=<%= kinds %>&page=<%= start_block - 1 %>&key=<%= key %>">◀</a></li><%
 		}
 		//(3,4,11)최대 페이지 갯수만큼 페이지 표시
 		for (int pageno = start_block; pageno <= end_block; pageno++)
 		{
 			%>
 			<li>
-				<a href="study.jsp?kinds=<%= kinds %>&page=<%= pageno %>" <% if (cur_page == pageno) %>class="now"<%; %>>
+				<a href="study.jsp?kinds=<%= kinds %>&page=<%= pageno %>&key=<%= key %>" <% if (cur_page == pageno) %>class="now"<%; %>>
 					<%= pageno %> 
 				</a>
 			</li>
@@ -231,7 +271,7 @@ if(login != null)
 		//(12)다음 블럭 출력
 		if( end_block < max_page) //끝 페이지가 최대 페이지보다 작으면
 		{
-			%><li><a href="study.jsp?kinds=<%= kinds %>&page=<%= end_block + 1 %>">▶</a></li><%
+			%><li><a href="study.jsp?kinds=<%= kinds %>&page=<%= end_block + 1 %>&key=<%= key %>">▶</a></li><%
 		}
 		%>
 	</ul>

@@ -27,9 +27,7 @@ if(bno == "")
 //시작날짜와 끝날짜를 Date로 변환
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 Date today = new Date();		//오늘날짜
-%>
 
-<%
 //로그인 해야 댓글 작성 가능
 if(login != null)
 {
@@ -78,14 +76,22 @@ if(dbms.GetNext())
 		rpost = dbms.GetValue("rpost"); //댓글내용
 		rdate = dbms.GetValue("rdate"); //댓글 작성일
 		%>
+		<script>
+			function ReplyModify(rno)
+			{
+				//alert(rno);
+				
+			}
+		</script>
 		<div class="reply">
 			<span><%= reply_nick %></span>
 			<p><%= rpost %></p>
 			<span class="date"><%= rdate.split(" ")[0] %></span>
 			<%
-			if(login.getNo().equals(no))
+			if(login != null && login.getNo().equals(no))
 			{
 				%>
+				<a href="javascript:alert('아직이에요 :(');">수정</a> 
 				<a href="javascript:ReplyDelete('replydelete.jsp?bno=<%=bno%>&rno=<%=rno%>');">삭제</a>
 				<%
 			}
@@ -94,7 +100,9 @@ if(dbms.GetNext())
 		<%
 	}while(dbms.GetNext());
 	dbms.CloseQuery();
+	%>
+	</div>
+	<%
 }
 %>
-</div>
 <%@ include file="./config/dbclose.jsp"%>

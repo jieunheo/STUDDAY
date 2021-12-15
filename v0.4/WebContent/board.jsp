@@ -26,10 +26,11 @@ String title    = "";	//제목
 String post     = "";	//내용
 String lang     = "";	//언어
 String date     = "";	//작성일
-String start_date = "";	//시작날짜
-String end_date   = "";	//끝날짜
-String state      = ""; //모집상태
-String key        = ""; //검색
+String start_date  = ""; //시작날짜
+String end_date    = ""; //끝날짜
+String state       = ""; //모집상태
+String key         = ""; //검색
+String reply_count = ""; //댓글 갯수
 
 //시작날짜와 끝날짜를 Date로 변환
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,6 +106,7 @@ if ((total % paging_list) != 0) max_page++; //나머지가 있는 경우 +1
 sql = "";
 sql += "select bno,b.no,kinds,title,lang,date,views,";
 sql += "date(start_date) as start_date,date(end_date) as end_date, ";
+sql += "(select count(*) from reply where bno = b.bno) as reply_count, ";
 sql += "u.id,u.nickname,u.user_rank ";
 sql += "from board as b ";
 sql += "inner join user as u ";
@@ -161,15 +163,16 @@ if (end_block >= max_page)
 	{
 		do
 		{
-			bno        = dbms.GetValue("bno");
-			no         = dbms.GetValue("no");
-			nickname   = dbms.GetValue("nickname");
-			kinds      = dbms.GetValue("kinds");
-			title      = dbms.GetValue("title");
-			lang       = dbms.GetValue("lang");
-			date       = dbms.GetValue("date");
-			start_date = dbms.GetValue("start_date");
-			end_date   = dbms.GetValue("end_date");
+			bno         = dbms.GetValue("bno");
+			no          = dbms.GetValue("no");
+			nickname    = dbms.GetValue("nickname");
+			kinds       = dbms.GetValue("kinds");
+			title       = dbms.GetValue("title");
+			lang        = dbms.GetValue("lang");
+			date        = dbms.GetValue("date");
+			start_date  = dbms.GetValue("start_date");
+			end_date    = dbms.GetValue("end_date");
+			reply_count = dbms.GetValue("reply_count");
 			
 			if( !(kinds.equals("0") || kinds.equals("9")) )
 			{
@@ -200,7 +203,11 @@ if (end_block >= max_page)
 			%>
 			<tr>
 				<td><%= seqno-- %></td>
-				<td><a href="view.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>"><%= title %></a></td>
+				<td>
+					<a href="view.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>">
+						<%= title %><%if(!reply_count.equals("0")){%> <span class="relpy_count">[<%= reply_count %>]</span><%}%>
+					</a>
+				</td>
 				<%
 				if(kinds.equals("1"))
 				{

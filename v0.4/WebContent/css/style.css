@@ -6,6 +6,8 @@ a, p, div, ul, li, input, form, textarea {
 }
 
 ul, li {
+	margin: 0;
+	padding: 0;
 	list-style: none;
 	display: inline-block;
 }
@@ -349,18 +351,19 @@ h2 {
 }
 
 .overflow {
-	max-width: 1000px;
+	max-width: 960px;
 	height: 240px;
 	margin: 0 auto;
 	overflow: hidden;
 	position: relative;
 }
 
-.overflow ul {
+.items {
 	position: absolute;
-	width: 2000px;
+	width: 1920px;
 	top: 0;
 	left: 0;
+	font-size: 0;
 }
 
 .item {
@@ -369,6 +372,7 @@ h2 {
 	background: #fff;
 	
 	margin: 0 20px;
+	font-size: 16px;
 }
 
 .item a {
@@ -455,7 +459,7 @@ h3 {
 	padding: 10px;
 }
 
-.form input[type=button] {
+.form .btn {
 	height: 40px;
 	background: #556773;
 	color: #fff;
@@ -605,6 +609,10 @@ footer small {
 .table_btn_wrap a {
 	position: absolute;
 	right: 0;
+}
+
+.relpy_count {
+	color: #0973BA;
 }
 
 .paging a {

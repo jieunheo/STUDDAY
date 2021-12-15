@@ -94,7 +94,7 @@ dbms.RunSQL(sql);
 %>
 <script>
 		<%
-		login = new LoginVo(no,id,nick,rank);
+		login = new LoginVo(no,id,nick,rank,email);
 		session.setAttribute("login", login);
 		%>
 		alert('정보 수정이 완료되었습니다.');

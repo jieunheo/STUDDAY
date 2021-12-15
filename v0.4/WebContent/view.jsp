@@ -235,8 +235,23 @@ dbms.CloseQuery();
 							
 							<div class="btn_wrap">
 								<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>">뒤로가기</a>
-								<a class="btn" href="modify.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>">글수정</a>
-								<a class="btn" href="delete.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>" onclick="return confirm('삭제하시겠습니까?');">글삭제</a>
+								<%
+								if(login != null)
+								{
+									if(login.getNo().equals(no) || login.getRank().equals("A"))
+									{
+										if(login.getNo().equals(no))
+										{
+											%>
+											<a class="btn" href="modify.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>">글수정</a>
+											<%
+											}
+										%>
+										<a class="btn" href="delete.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>" onclick="return confirm('삭제하시겠습니까?');">글삭제</a>
+									<%
+									}
+								}
+								%>
 							</div>
 						</div>
 						

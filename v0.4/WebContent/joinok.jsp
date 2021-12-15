@@ -60,7 +60,7 @@ if (isNext == true)
 	if(confirm('회원가입이 완료 되었습니다. 바로 로그인하시겠습니까?') == true)
 	{
 		<%
-		LoginVo login = new LoginVo(no,id,nick,rank);
+		LoginVo login = new LoginVo(no,id,nick,rank,email);
 		session.setAttribute("login", login);
 		%>
 		alert('로그인 되었습니다.');

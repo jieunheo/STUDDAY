@@ -31,6 +31,7 @@ String end_date    = ""; //끝날짜
 String state       = ""; //모집상태
 String key         = ""; //검색
 String reply_count = ""; //댓글 갯수
+String attach      = ""; //첨부파일
 
 //시작날짜와 끝날짜를 Date로 변환
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -107,6 +108,7 @@ sql = "";
 sql += "select bno,b.no,kinds,title,lang,date,views,";
 sql += "date(start_date) as start_date,date(end_date) as end_date, ";
 sql += "(select count(*) from reply where bno = b.bno) as reply_count, ";
+sql += "(select count(*) from attach where bno = b.bno) as attach, ";
 sql += "u.id,u.nickname,u.user_rank ";
 sql += "from board as b ";
 sql += "inner join user as u ";
@@ -173,6 +175,7 @@ if (end_block >= max_page)
 			start_date  = dbms.GetValue("start_date");
 			end_date    = dbms.GetValue("end_date");
 			reply_count = dbms.GetValue("reply_count");
+			attach      = dbms.GetValue("attach");
 			
 			if( !(kinds.equals("0") || kinds.equals("9")) )
 			{
@@ -205,7 +208,7 @@ if (end_block >= max_page)
 				<td><%= seqno-- %></td>
 				<td>
 					<a href="view.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>">
-						<%= title %><%if(!reply_count.equals("0")){%> <span class="relpy_count">[<%= reply_count %>]</span><%}%>
+						<%= title %><%if(!reply_count.equals("0")){%> <span class="relpy_count">[<%= reply_count %>]</span><%} if(attach.equals("1")){%><span class="relpy_count">&nbsp;★</span><%}%>
 					</a>
 				</td>
 				<%

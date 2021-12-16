@@ -21,7 +21,7 @@ public class MailSender
 			Properties clsProp = System.getProperties();
 			
 			// 메일 서버 주소
-			clsProp.put( "mail.smtp.host", "smtp.naver.com" );
+			clsProp.put( "mail.smtp.host", "smtp.gmail.com" );
 			
 			// 메일 서버 포트 번호
 			clsProp.put( "mail.smtp.port", 465 );			
@@ -31,7 +31,7 @@ public class MailSender
 			// 인증이 필요하면 아래와 같이 설정한다.
 			clsProp.put("mail.smtp.auth", "true"); 
 			clsProp.put("mail.smtp.ssl.enable", "true"); 
-			clsProp.put("mail.smtp.ssl.trust", "smtp.naver.com");			
+			clsProp.put("mail.smtp.ssl.trust", "smtp.gmail.com");			
 			
 			System.out.println("send stage 03");
 			
@@ -80,11 +80,14 @@ public class MailSender
 	
 	public static void main(String[] args) 
 	{
+		/*
 		MailSender m = new MailSender();
-		m.MailSend("gjekdmlwl4@naver.com", 
-				"gjekdmlwl4@naver.com",
-				"gjekdmlwl4","1B7LW1D7LLBX",
+		m.MailSend("gjekdmlwl@gmail.com", 
+				"gjekdmlwl@gmail.com",
+				"gjekdmlwl@gmail.com","hajin1121!",
 				"제목!!","내용!!!");
+		*/
+		
 		
 		//MailSender 클래스를 아래와 같이 구조를 변경하여 고쳐 쓸것!!!!!!!!!!
 		/*

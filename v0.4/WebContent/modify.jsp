@@ -128,6 +128,24 @@ if(kinds.equals("1"))
 	}
 }
 dbms.CloseQuery();
+
+//첨부파일 얻기
+String ano   = ""; //첨부파일 번호
+String fname = ""; //첨부파일 이름
+if(kinds.equals("3"))
+{
+	sql = "";
+	sql += "select ano,fname ";
+	sql += "from attach ";
+	sql += "where bno=" + bno;
+	dbms.OpenQuery(sql);
+	if (dbms.GetNext() == true)
+	{
+		ano   = dbms.GetValue("ano");
+		fname = dbms.GetValue("fname");
+	}
+	dbms.CloseQuery();
+}
 %>
 <!-- 날짜 값을 받아오기 위한 달력 -->
 <link rel="stylesheet" href="./css/date.css" type="text/css" />  
@@ -184,7 +202,7 @@ function FormCheck()
 					<p>Study > <%= strkind %> > Modify</p>
 				</div>
 				<div>
-					<form class="modify" name="write" method="post" action="modifyok.jsp">
+					<form class="modify" name="write" method="post" action="modifyok.jsp" onsubmit="return FormCheck();" enctype="multipart/form-data">
 						<input type="hidden" name="bno" value="<%= bno %>">
 						<input type="hidden" name="page" value="<%= cur_page %>">
 						<input type="hidden" name="kinds" value="<%= kinds %>">
@@ -222,8 +240,32 @@ function FormCheck()
 							<p><span>작성일 </span><%= date %></p>
 							<%
 						}
+
+						if(kinds.equals("3") || kinds.equals("0"))
+						{	
+							%>
+							<p>
+								<span>첨부파일 </span>
+								<%
+								if(fname.equals("")) {
+									%>
+									<br>첨부파일이 없습니다.
+									
+									<%
+								} else
+								{
+									%>
+									<br><a href="download.jsp?fno=<%= ano %>"><%= fname %></a>
+									<%
+								}
+								%>
+								<input name="attach" type="file" style="width:95%">
+							</p>
+							<%
+						}
 						%>
 						<textarea class="post" name="post" placeholder="<%= extitle %>"><%= post %></textarea>
+						
 						<div class="btn_wrap">
 							<a class="btn" href="view.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>&bno=<%= bno %>">뒤로가기</a>
 							<input class="btn" type="submit" value="수정하기">

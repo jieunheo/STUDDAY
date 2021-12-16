@@ -159,7 +159,7 @@ String str_today = sdf.format(today);
 					<p>Study > <%= strkind %> > Write</p>
 				</div>
 				<div>
-					<form class="write" name="write" method="post" action="writeok.jsp" onsubmit="return FormCheck();">
+					<form class="write" name="write" method="post" action="writeok.jsp" enctype="multipart/form-data" onsubmit="return FormCheck();">
 						<input type="hidden" name="kinds" value="<%= kinds %>">
 						<input type="hidden" name="page" value="<%= cur_page %>">
 						<input type="hidden" name="key" value="<%= key %>">
@@ -198,6 +198,14 @@ String str_today = sdf.format(today);
 							%>
 						</p>
 						<textarea class="post" name="post" placeholder="<%= extitle %>"></textarea>
+						<%
+						if(kinds.equals("3") || kinds.equals("0"))
+						{	
+							%>
+							<p><span>첨부파일 </span><input name="attach" type="file"></p>
+							<%
+						}
+						%>
 						<div class="btn_wrap">
 							<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>">뒤로가기</a>
 							<input class="btn" type="submit" value="글쓰기">

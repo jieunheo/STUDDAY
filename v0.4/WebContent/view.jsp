@@ -120,6 +120,24 @@ if(kinds.equals("1"))
 
 post = post.replace("\n", "<br>");
 dbms.CloseQuery();
+
+String ano   = ""; //첨부파일 번호
+String fname = ""; //첨부파일 이름
+if(kinds.equals("3") || kinds.equals("0"))
+{
+	//첨부파일 얻기
+	sql = "";
+	sql += "select ano,fname ";
+	sql += "from attach ";
+	sql += "where bno=" + bno;
+	dbms.OpenQuery(sql);
+	if (dbms.GetNext() == true)
+	{
+		ano   = dbms.GetValue("ano");
+		fname = dbms.GetValue("fname");
+	}
+	dbms.CloseQuery();
+}
 %>
 <script>
 	window.onload = function ()
@@ -227,6 +245,25 @@ dbms.CloseQuery();
 								date = date.split(" ")[0];
 								%>
 								<p><span>작성일 </span><%= date %></p>
+								<%
+							}
+
+							if(kinds.equals("3") || kinds.equals("0"))
+							{	
+								%>
+								<p>
+									<span>첨부파일 </span>
+									<%
+									if(fname.equals("")) {
+										%>첨부파일이 없습니다.<%
+									} else
+									{
+										%>
+										<a class="down_btn" href="download.jsp?fno=<%= ano %>"><%= fname %></a>
+										<%
+									}
+									%>
+								</p>
 								<%
 							}
 							%>

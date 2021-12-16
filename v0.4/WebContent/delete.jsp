@@ -65,12 +65,10 @@ if(login.getNo().equals(no) == false && login.getRank().equals("U"))
 	return;
 }
 
-/*
 //첨부파일 먼저 삭제(외래키로 인함)
 sql = "delete from attach ";
 sql += "where bno = " + bno + " ";
 dbms.RunSQL(sql);
-*/
 
 //게시물 삭제
 sql  = "delete from board ";

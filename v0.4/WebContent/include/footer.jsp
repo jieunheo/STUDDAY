@@ -4,8 +4,8 @@
 			<div class="wrap">
 				<p>
 					관리자: 허지은<br>
-					<a href="#">전화번호: 010-7794-1204</a><br>
-					<a href="mailto:gjekdmlwl@naver.com">이메일: gjekdmlwl@naver.com</a>
+					<a href="tel:01077941204">전화번호: 010-7794-1204</a><br>
+					<a href="mailto:gjekdmlwl@naver.com?subject=안녕하세요.">이메일: gjekdmlwl@naver.com</a>
 				</p>
 				<small>
 					Copyright 2021  All rights reserved. STUDDAY

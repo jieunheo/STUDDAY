@@ -526,19 +526,18 @@ footer small {
 }
 
 .tab_menu a {
+	box-sizing: border-box;
 	padding: 10px 20px;
 	margin: 0 10px;
 	border-bottom: 3px solid #fff;
 }
 
 .tab_menu a:hover {
-	box-sizing: border-box;
-	color: #0973BA;
-	border-bottom: 3px solid #0973BA;
+	color: #556773;
+	border-bottom: 3px solid #556773;
 }
 
 .tab_menu .now {
-	box-sizing: border-box;
 	color: #0973BA;
 	border-bottom: 3px solid #0973BA;
 }

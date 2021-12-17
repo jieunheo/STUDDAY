@@ -170,7 +170,6 @@ String str_today = sdf.format(today);
 							}
 							%>
 						</p>
-						<textarea class="post" name="post" placeholder="<%= extitle %>"></textarea>
 						<%
 						if(kinds.equals("3") || kinds.equals("0"))
 						{	
@@ -179,6 +178,8 @@ String str_today = sdf.format(today);
 							<%
 						}
 						%>
+						<textarea class="post" name="post" placeholder="<%= extitle %>"></textarea>
+						
 						<div class="btn_wrap">
 							<a class="btn" href="study.jsp?kinds=<%= kinds %>&page=<%= cur_page %>&key=<%= key %>">뒤로가기</a>
 							<input class="btn" type="submit" value="글쓰기">

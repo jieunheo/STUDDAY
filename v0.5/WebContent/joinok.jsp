@@ -45,15 +45,28 @@ dbms.CloseQuery();
 
 if (isNext == true)
 {
-	%><p>중복된 아이디가 존재합니다.</p><%
+	%>
+	<p>중복된 아이디가 존재합니다.</p>
+	<%
 } else
 {
-	sql = "";
-	sql += "insert into user (id,pw,nickname,email) ";
-	sql += "value ('" + id + "',md5('" + pw + "'),'" + nick + "','" + email + "')";
-	dbms.RunSQL(sql);
-	
-	no = dbms.GetLastID("no");
+	try
+	{
+		sql = "";
+		sql += "insert into user (id,pw,nickname,email) ";
+		sql += "value ('" + id + "',md5('" + pw + "'),'" + nick + "','" + email + "')";
+		dbms.RunSQL(sql);
+		
+		no = dbms.GetLastID("no");
+	}catch(Exception e)
+	{
+		%>
+		<script>
+			alert('오류로 인해 가입되지 않았습니다.');
+			window.location = 'error.jsp';
+		</script>
+		<%
+	}
 }
 %>
 <script>

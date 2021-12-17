@@ -12,21 +12,33 @@ if (no == null || no.equals(""))
 
 String sql = "";
 
-sql += "select no from user name where no = " + no + "and retire = 'N'";
+//해당 회원이 있는지 확인
+sql += "select no ";
+sql += "from user ";
+sql += "where no = " + no + " ";
+sql += "and retire = 'N'";
 dbms.OpenQuery(sql);
 if(dbms.GetNext() == false)
 {
+	//없으면 00 리턴
 	dbms.CloseQuery();
-	out.print("탈퇴할 수 없는 회원입니다.");
+	out.print("00");
 	return;
 }
 dbms.CloseQuery();
+
+//탈퇴 정보 수정
 sql = "";
-sql += "update user set retire = 'Y' where no=" + no;
+sql += "update user ";
+sql += "set retire = 'Y' ";
+sql += "where no=" + no;
 dbms.RunSQL(sql);
 
-
-
+//해당 세션 지우기
 session.removeAttribute("login");
 %>
+<script>
+	alert('탈퇴했습니다. 감사합니다 :)');
+	window.location = "index.jsp";
+</script>
 <%@ include file="./config/dbclose.jsp"%>

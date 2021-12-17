@@ -8,9 +8,16 @@ String send_email = request.getParameter("send_email");
 String title = request.getParameter("title");
 String body  = request.getParameter("body");
 
-if(send_email == null) send_email = "";
-if(title == null) title = "";
-if(body == null)  body = "";
+if(send_email == null || title == null || body == null)
+{
+	%>
+	<script>
+		alert('값이 비었습니다!');
+		window.location = "request.jsp";
+	</script>
+	<%
+	return;
+}
 
 if(!send_email.equals("") && !title.equals("") && !body.equals(""))
 {

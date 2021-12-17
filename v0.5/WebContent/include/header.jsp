@@ -38,7 +38,7 @@ LoginVo login = (LoginVo)session.getAttribute("login");	//로그인정보
 				</div>
 				<div class="nav">
 					<ul>
-						<li><a href="javascript:ready();">How To</a></li>
+						<li><a href="howto.jsp">How To</a></li>
 						<li>
 							<a href="study.jsp">Study</a>
 							<ul class="sub_nav">

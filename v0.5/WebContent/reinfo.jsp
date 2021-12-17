@@ -85,6 +85,26 @@ if(homepage == null) homepage = "";
 			return false;
 		}
 	}
+	
+	function Secession(no)
+	{
+		if(confirm('탈퇴하시면 해당 정보로 다시 가입이 불가합니다.\n정말 탈퇴하시겠습니까?'))
+		{
+			$.ajax({
+				type: "get",
+				url: "secession.jsp?no=" + no,
+				dataType: "html",
+				success: function(data) {
+					data = data.trim();
+					if(data == "00")
+					{
+						alert('탈퇴할 수 없는 회원입니다.');
+						return false;
+					}
+				}
+			});
+		}
+	}
 </script>
 <div class="main">
 	<div class="wrap">
@@ -109,6 +129,7 @@ if(homepage == null) homepage = "";
 							<textarea name="intro" placeholder="ex)본인 소개를 해주세요"><%= intro %></textarea>
 							<p><span>홈페이지</span> <input type="text" name="page" placeholder="ex)블로그 주소, 깃 주소 등" value=" <%= homepage %>"></p>
 							<p><input class="btn" type="submit" value="수정완료"></p>
+							<p><a href="javascript:Secession(<%= login.getNo() %>);">회원 탈퇴</a></p>
 						</form>
 					</div>
 				</div>

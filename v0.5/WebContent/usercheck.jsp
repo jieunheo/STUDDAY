@@ -12,7 +12,9 @@ if (value == null || value.equals(""))
 }
 
 String sql = "";
-sql += "select " + kind + " from user where " + kind + " = '" + value + "'";
+sql += "select " + kind + " ";
+sql += "from user ";
+sql += "where " + kind + " = '" + value + "'";
 dbms.OpenQuery(sql);
 
 if(dbms.GetNext() == true)
@@ -23,7 +25,7 @@ if(dbms.GetNext() == true)
 } else
 {	
 	if( (!kind.equals("nickname") && value.length() < 4) || (kind.equals("nickname") && value.length() < 2) )
-	{
+	{ //아이디와 이메일은 4글자 이하인 경우																닉네임은 2글자 이하인 경우
 		out.print("00");
 		return;
 	}

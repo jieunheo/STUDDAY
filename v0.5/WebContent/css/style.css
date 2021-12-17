@@ -5,7 +5,22 @@ a, p, div, ul, li, input, form, textarea {
 	box-sizing: border-box;
 }
 
-ul, li {
+.error h2 {
+	color: #0973BA;
+	margin: 20px 0 50px;
+}
+
+h3 {
+	font-size: 32px;
+	margin-bottom: 10px;
+}
+
+h4 {
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+
+ul, li, ol {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -63,6 +78,16 @@ td.ing {
 .wrap {
 	max-width: 1250px;
 	margin: 0 auto; 
+}
+
+.error {
+	height: 500px;
+	text-align: center;
+	padding-top: 100px;
+}
+
+.error h3 {
+	margin-bottom: 20px;
 }
 
 .clearfix:after {
@@ -416,11 +441,6 @@ h2 {
 	background: rgba(0, 0, 0, 0.2);
 }
 
-h3 {
-	font-size: 32px;
-	margin-bottom: 10px;
-}
-
 /* request */
 .request {
 	width: 100%;
@@ -679,6 +699,10 @@ footer small {
 	margin-top: 20px;
 }
 
+.attach {
+	margin-left: 100px;
+}
+
 .view .content {
 	border: 1px solid #e3ebf0;
 	padding: 20px;
@@ -692,6 +716,8 @@ footer small {
 	margin: 15px 0 20px;
 }
 
+
+/**댓글**/
 .reply_wrap {
 	padding-top: 20px;
 }
@@ -817,7 +843,7 @@ footer small {
 	margin-top: 15px;
 }
 
-.login a, .info a {
+.login a, .info a, .reinfo a {
 	width: 100%;
 	text-align: center;
 }
@@ -825,4 +851,21 @@ footer small {
 /* notice */
 .notice {
 	margin-bottom: 30px;
+}
+
+/* how to */
+.rules {
+	margin-top: 60px;
+}
+.rules > div {
+	margin-bottom: 30px;
+}
+
+.howto p {
+	margin-bottom: 15px;
+}
+
+.howto ol li {
+	display: block;
+	margin: 10px 0; 
 }

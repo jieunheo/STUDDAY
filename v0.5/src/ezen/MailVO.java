@@ -3,8 +3,8 @@ package ezen;
 public class MailVO {
 	MailSender send = null;
 	
-	private String from_mail;  //받는 주소
-	private String to_mail;    //보내는 주소
+	private String from_mail;  //보내는 주소
+	private String to_mail;    //받는 주소
 	private String id;         //보내는 아이디
 	private String pw;         //보내는 비밀번호
 	private String mail_title; //메일 제목

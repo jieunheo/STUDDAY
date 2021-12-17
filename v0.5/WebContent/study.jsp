@@ -19,8 +19,7 @@ switch (kinds)
 
 //key 값 분석
 String key = request.getParameter("key");
-if(key == null) key = "";
-if(key.equals("null")) key = "";
+if(key == null || key.equals("")) key = "";
 
 //page 값 분석
 int cur_page = 0;

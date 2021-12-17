@@ -2,19 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
 <%
-String no        = login.getNo(); //회원번호
-String id        = "";            //아이디
-String nickname  = "";            //닉네임
-String email     = "";            //이메일
-String join_date = "";            //가입일
-String user_rank = "";            //권한
-String jop       = "";            //직업
-String interest  = "";            //관심사
-String intro     = "";            //자기소개
-String homepage  = "";            //홈페이지
-
 /* 권한 검사 */
-if(login == null)
+if(login == null )
 {
 	%>
 	<script>
@@ -24,14 +13,48 @@ if(login == null)
 	<%
 }
 
-String sql = "";
-sql += "select no,id,nickname,email,join_date,";
-sql += "user_rank,jop,interest,intro,page ";
-sql += "from user ";
-sql += "where no = '" + login.getNo() + "' ";
-dbms.OpenQuery(sql);
-if(!dbms.GetNext()) {
+String no        = ""; //회원번호
+String id        = ""; //아이디
+String nickname  = ""; //닉네임
+String email     = ""; //이메일
+String join_date = ""; //가입일
+String user_rank = ""; //권한
+String jop       = ""; //직업
+String interest  = ""; //관심사
+String intro     = ""; //자기소개
+String homepage  = ""; //홈페이지
+
+try
+{
+	String sql = "";
+	sql += "select no,id,nickname,email,join_date,";
+	sql += "user_rank,jop,interest,intro,page ";
+	sql += "from user ";
+	sql += "where no = '" + login.getNo() + "' ";
+	dbms.OpenQuery(sql);
+	if(!dbms.GetNext()) {
+		dbms.CloseQuery();
+		%>
+		<script>
+			alert('정상적인 회원이 아닙니다.');
+			window.location = 'login.jsp';
+		</script>
+		<%
+	}
+	
+	no        = login.getNo();              //회원번호
+	id        = dbms.GetValue("id");        //아이디
+	nickname  = dbms.GetValue("nickname");  //닉네임
+	email     = dbms.GetValue("email");     //이메일
+	join_date = dbms.GetValue("join_date"); //가입일
+	user_rank = dbms.GetValue("user_rank"); //권한
+	jop       = dbms.GetValue("jop");       //직업
+	interest  = dbms.GetValue("interest");  //관심사
+	intro     = dbms.GetValue("intro");     //자기소개
+	homepage  = dbms.GetValue("page");      //홈페이지
 	dbms.CloseQuery();
+} catch (Exception e)
+{
 	%>
 	<script>
 		alert('정상적인 회원이 아닙니다.');
@@ -39,18 +62,6 @@ if(!dbms.GetNext()) {
 	</script>
 	<%
 }
-
-no        = login.getNo();              //회원번호
-id        = dbms.GetValue("id");        //아이디
-nickname  = dbms.GetValue("nickname");  //닉네임
-email     = dbms.GetValue("email");     //이메일
-join_date = dbms.GetValue("join_date"); //가입일
-user_rank = dbms.GetValue("user_rank"); //권한
-jop       = dbms.GetValue("jop");       //직업
-interest  = dbms.GetValue("interest");  //관심사
-intro     = dbms.GetValue("intro");     //자기소개
-homepage  = dbms.GetValue("page");      //홈페이지
-dbms.CloseQuery();
 
 if(jop == null)      jop = "";
 if(interest == null) interest = "";
@@ -82,11 +93,11 @@ if(homepage == null) homepage = "";
 			success: function(data) {
 				data = data.trim();
 				
-				if(data != "00")
+				if(data == "00")
 				{
-					window.location = "reinfo.jsp";
-				} else{
 					alert('비밀번호가 일치하지 않습니다.');
+				} else {
+					window.location = "reinfo.jsp";
 				}
 			}
 		});
@@ -123,7 +134,6 @@ if(homepage == null) homepage = "";
 							%>
 							</p>
 							<p><input class="btn" type="submit" value="정보수정"></p>
-							<p><a href="jacascript:ready();">회원 탈퇴</a></p>
 						</form>
 					</div>
 				</div>

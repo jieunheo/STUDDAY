@@ -805,6 +805,22 @@ footer small {
 	width: 100%;
 }
 
+.sign {
+	position: relative;
+}
+
+.sign img {
+	margin: 0;
+	padding: 0;
+}
+
+#sign {
+	position: absolute;
+	width: 170px;
+	right: 0;
+	bottom: 0;
+}
+
 .info input[type=password],
 .reinfo input[type=text],
 .reinfo input[type=password],

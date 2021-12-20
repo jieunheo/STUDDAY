@@ -109,6 +109,7 @@ dbms.OpenQuery(sql);
 			<div class="text">
 				<h3>With Us</h3>
 				<p>마음에 드는 스터디를 찾아 함께 해보세요 :)</p>
+				<a href="study.jsp?kinds=1">더 보기 ></a>
 			</div>
 			<%
 			//withus의 최근 게시글 8개 불러오기

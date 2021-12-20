@@ -333,6 +333,15 @@ h2 {
 	color: #556773;
 }
 
+.study_list .text a {
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.text a:hover {
+	color: #0973BA;
+}
+
 .before_btn, .after_btn {
   position:relative;
   width:30px;
@@ -343,6 +352,10 @@ h2 {
   overflow: hidden;
 	
 	z-index: 999;
+}
+
+.before_btn:hover:before, .after_btn:hover:before {
+	border-color: #0973BA;
 }
 
 .before_btn {
@@ -885,7 +898,7 @@ footer small {
 }
 
 .top_text h3 {
-	color: #0973ba;
+	color: #0973BA;
 	margin-bottom: 20px;
 }
 

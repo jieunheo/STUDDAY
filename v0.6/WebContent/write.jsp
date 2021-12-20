@@ -23,11 +23,11 @@ String expost    = "내용을 입력해주세요."; //내용예시
 switch (kinds)
 {
 	case "0":
-		strkind = "Notice";
+		strkind   = "Notice";
 		strfilter = 0;
 		break;
 	case "1": 
-		strkind = "With Us";
+		strkind   = "With Us";
 		strwriter = "리더";
 		strtitle  = "스터디이름";
 		extitle   = "스터디원을 불러보세요!";     //글제목표시이름
@@ -56,14 +56,28 @@ switch (kinds)
 		strfilter = 1;
 		break;
 	case "2":
-		strkind = "Lecture";
+		strkind   = "Lecture";
 		strwriter = "추천자";
+		expost    = "강의 설명: \n";
+		expost   += "링크: ";
 		break;
-	case "3": strkind = "Reference"; break;
-	case "4": strkind = "Tip"; break;
-	case "5": strkind = "Q&A"; break;
+	case "3":
+		strkind   = "Reference";
+		expost    = "자료 설명: \n";
+		expost   += "자료 출처: ";
+		break;
+	case "4":
+		strkind   = "Tip";
+		expost    = "팁 내용: \n";
+		expost   += "출처: 본인의 순수 창작이라면 본인을 적어주세요.";
+		break;
+	case "5":
+		strkind   = "Q&A";
+		expost    = "질문 내용: \n";
+		expost   += "관련 자료 혹은 사이트: ";
+		break;
 	case "9":
-		strkind = "Talk";
+		strkind   = "Talk";
 		strfilter = 0;
 		break;
 }

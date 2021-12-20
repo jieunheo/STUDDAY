@@ -338,7 +338,7 @@ h2 {
 	font-size: 12px;
 }
 
-.text a:hover {
+.study_list .text a:hover {
 	color: #0973BA;
 }
 
@@ -760,12 +760,22 @@ footer small {
 	padding-bottom: 20px;
 }
 
+.reply span {
+	vertical-align: top;
+	padding: 10px 0;
+}
+
 .reply span:first-child {
 	width: 100px;
 }
 
 .reply .date {
 	font-weight: normal;
+}
+
+.reply a {
+	vertical-align: top;
+	padding: 10px 0;
 }
 
 .reply input[type=text] {

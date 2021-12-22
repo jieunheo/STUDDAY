@@ -37,7 +37,6 @@ create table board
 	views INT default 0 comment '조회수',
 	start_date DATETIME comment '시작날짜',
 	end_date DATETIME comment '끝날짜',
-	state VARCHAR(10) comment '모집여부',
 	foreign key(no) references user(no)
 );
 

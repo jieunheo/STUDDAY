@@ -108,16 +108,18 @@ public class UserDTO extends DBManager
 	}
 	
 	
-	public boolean Update(UserVO vo, String pw)
+	public UserVO Update(UserVO vo)
 	{
+		UserVO login = null;
+		
 		//데이터베이스에 연결한다.
 		System.out.println("연결 준비");
-		if(this.DBOpen() == false) return false;
+		if(this.DBOpen() == false) return null;
 		System.out.println("연결 완료");
 		
 		//no값을 이용하여 값을 확인한다.
 		String sql = "";
-		sql  = "select id ";
+		sql  = "select id,pw ";
 		sql += "from user ";
 		sql += "where no = '" + vo.getNo() + "' ";
 		this.OpenQuery(sql);
@@ -127,9 +129,9 @@ public class UserDTO extends DBManager
 			//값이 있으면 수정
 			sql  = "";
 			sql += "update user set ";
-			if(!(pw == null || pw.equals("")))
+			if(!(vo.getPw() == null || vo.getPw().equals("")))
 			{
-				sql += "pw=md5('" + pw + "'), ";
+				sql += "pw=md5('" + vo.getPw() + "'), ";
 			}
 			sql += "nickname='" + vo.getNickname() + "', ";
 			sql += "email='" + vo.getEmail() + "', ";
@@ -141,13 +143,15 @@ public class UserDTO extends DBManager
 			sql += "and retire = 'N' ";
 			this.RunSQL(sql);
 			
+			login = vo;
+			
 			this.DBClose();
-			return true;
+			return login;
 		}
 		//데이터베이스 연결을 종료한다.
 		this.CloseQuery();
 		this.DBClose();
-		return false;
+		return login;
 	}
 	
 	public boolean Delete(UserVO vo)
@@ -219,7 +223,7 @@ public class UserDTO extends DBManager
 		vo.setJop(this.GetValue("jop"));
 		vo.setInterest(this.GetValue("interest"));
 		vo.setIntro(this.GetValue("intro"));
-		vo.setHomepage(this.GetValue("page").trim());
+		vo.setHomepage(this.GetValue("page"));
 		vo.setUser_rank(this.GetValue("user_rank"));
 		
 		this.CloseQuery();

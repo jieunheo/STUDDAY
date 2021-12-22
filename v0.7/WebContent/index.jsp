@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="ezen.dbms.*" %>
+<%@ page import="ezen.dto.*" %>
+<%@ page import="ezen.vo.*" %>
+<%@ page import="ezen.mail.*" %>
 <%@ include file="./include/header.jsp" %>
 <%
-//값 받아오기
-String bno 	      = ""; //게시물번호
-String title      = "제목입니당";	//제목
-String lang       = "";	//언어
-String start_date = "";	//시작날짜
-String end_date   = "";	//끝날짜
-String state      = ""; //모집상태
-String key        = ""; //검색
+SearchVO search = new SearchVO();
+search.setKinds(request.getParameter("kinds"));
+search.setKeyword(request.getParameter("key"));
+search.setSortcol(request.getParameter("oc"));
+search.setSortorder(request.getParameter("ob"));
+search.setCurpage(request.getParameter("page"));
+
+ListDTO dto = new ListDTO(search);
+int total = dto.GetTotal();
 %>
 <script>
 	var imgs;             //이미지가 있는 객체
@@ -44,7 +49,7 @@ String key        = ""; //검색
 				if(login == null)
 				{
 					%>
-					<a href="login.jsp" onclick="alert('로그인 해주세요!');">동료 구하기</a>
+					<a href="./login/login.jsp" onclick="alert('로그인 해주세요!');">동료 구하기</a>
 					<%
 				} else
 				{
@@ -94,54 +99,22 @@ String key        = ""; //검색
 				<a id="before_btn" class="before_btn" href="javscript:PrevItem();"></a>
 				<div class="overflow">
 					<ul id="items" class="items">
+					<%
+					dto.GetMainList();
+					int seqno = dto.GetListTotal();
+					for(int i=0; i < seqno; i++)
+					{
+						BoardVO vo = dto.GetItem(i);
+						%>
 						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb java <%= lang %>"></div>
-								<p><%= title %></p>
+							<a href="view.jsp?<%= search.GetViewLink(vo.getNo()) %>">
+								<div class="thumb <%= vo.getLang() %>"></div>
+								<p><%= vo.getTitle() %></p>
 							</a>
 						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb java <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb sql <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb js <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb sql <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb js <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb java <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
-						<li class="item">
-							<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-								<div class="thumb java <%= lang %>"></div>
-								<p><%= title %></p>
-							</a>
-						</li>
+						<%
+					}	
+					%>
 					</ul>
 				</div>
 				<a id="after_btn" class="after_btn" href="javscript:NextItem();"></a>

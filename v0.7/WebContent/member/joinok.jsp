@@ -42,36 +42,40 @@ int code = dto.IsDuplicate("id",id);
 if(code == UserDTO.NOT_DUPLICATE)
 {
 	//id 중복이 아닌 경우 인서트
+
 	UserVO user = new UserVO(id,pw,nickname,email);
 	
-	if( dto.Insert(user) == false)
-	{
-		%>
-		<script>
-			alert("회원가입 중 오류가 있습니다. 다시 시도해주세요.");
-			window.location = '/Studday0.6/member/join.jsp';
-		</script>
-		<%	
-	} else
+	if( dto.Insert(user) == true)
 	{
 		//회원가입 성공
 		%>
-				/*
 		<script>
-			if(confirm("바로 로그인 하시겠습니까?"))
+			if(confirm("회원가입 되었습니다. 바로 로그인 하시겠습니까?"))
 			{
-				//자동으로 로그인 시킨다.
+				<%
 				UserVO login = dto.Login(id, pw);
+				login.PrintInfo();
+				
 				if( login != null)
 				{
 					session.setAttribute("login", login);
 				}
-				document.location = "/Studday0.6/index.jsp";
+				%>
 			}
+			window.location = '/Studday0.6/index.jsp';
+			
 		</script>
-				*/
+		<%	
+	} else
+	{
+		//회원가입 실패
+		%>
+		<script>
+			//회원가입 화면으로 이동시킨다.
+			alert('회원가입 중 오류가 있습니다. 다시 시도해주세요.');
+			window.location = 'join.jsp';
+		</script>
 		<%
-		/*response.sendRedirect("/Studday0.6/index.jsp");*/
 	}
 }else
 {

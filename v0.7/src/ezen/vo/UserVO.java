@@ -18,10 +18,10 @@ public class UserVO
 	public UserVO()
 	{
 		//회원가입 시 입력하지 않는 값들 초기화
-		jop      = "";
-		interest = "";
-		intro    = "";
-		homepage = "";
+		jop       = "";
+		interest  = "";
+		intro     = "";
+		homepage  = "";
 	}
 	
 	public UserVO(String id, String pw, String nickname, String email)
@@ -67,11 +67,24 @@ public class UserVO
 	public void setEmail(String email)         { this.email = email;         }
 	public void setJoin_date(String join_date) { this.join_date = join_date; }
 	public void setRetire(String retire)       { this.retire = retire;       }
-	public void setJop(String jop)             { this.jop = jop;             }
-	public void setInterest(String interest)   { this.interest = interest;   }
-	public void setIntro(String intro)         { this.intro = intro;         }
-	public void setHomepage(String homepage)   { this.homepage = homepage;   }
 	public void setUser_rank(String user_rank) { this.user_rank = user_rank; }
+	
+	public void setJop(String jop)             {
+		if(jop == null) jop = "";
+		this.jop = jop;
+	}
+	public void setInterest(String interest)   {
+		if(interest == null) interest = "";
+		this.interest = interest;
+	}
+	public void setIntro(String intro)         {
+		if(intro == null) intro = "";
+		this.intro = intro;
+	}
+	public void setHomepage(String homepage)   {
+		if(homepage == null) homepage = "";
+		this.homepage = homepage;
+	}
 	
 	/* date format */
 	public String GetDate(String date) {

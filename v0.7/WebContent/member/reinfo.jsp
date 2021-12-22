@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<%
-/* 권한 검사 */
-if(login == null)
-{
-	%>
-	<script>
-		alert('로그인 후 이용이 가능합니다.');
-		window.location = '../login/login.jsp';
-	</script>
-	<%
-}
-%>
 <script>
 	window.onload = function()
 	{
@@ -82,12 +70,7 @@ if(login == null)
 					} else
 					{
 						alert('탈퇴되었습니다.');
-						
-						//해당 세션 지우기
-						<%
-						session.removeAttribute("login");
-						%>
-						document.locstion = "/Studday0.6/index.jsp";
+						document.location = "/Studday0.6/index.jsp";
 					}
 				}
 			});

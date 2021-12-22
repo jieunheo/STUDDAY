@@ -61,9 +61,9 @@ if(login == null )
 						<form name="info" method="post" action="reinfo.jsp" onsubmit="return FormCheck();">
 							<p><span>아이디</span> ${ login.id }</p>
 							<p><span>비밀번호</span> <input id="pw" type="password" name="pw" placeholder="비밀번호"></p>
-							<p><span>닉네임</span> ${ login.nickname }(A)</p>
+							<p><span>닉네임</span> ${ login.nickname } (${ login.user_rank })</p>
 							<p><span>email</span> ${ login.email }</p>
-							<p><span>가입일시</span> ${ login.join_date }</p>
+							<p><span>가입일시</span> ${ login.join_date.split(' ')[0] }</p>
 							<hr>
 							<p><span>직업</span> ${ login.jop }</p>
 							<p><span>관심사</span> ${ login.interest }</p>

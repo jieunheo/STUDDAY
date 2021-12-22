@@ -20,6 +20,7 @@ if(dto.Delete(login))
 	%>
 	01
 	<%
+	session.removeAttribute("login");
 } else
 {
 	%>

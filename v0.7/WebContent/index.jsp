@@ -54,7 +54,7 @@ int total = dto.GetTotal();
 				} else
 				{
 					%>
-					<a href="study.jsp">동료 구하기</a>
+					<a href="./main/study.jsp">동료 구하기</a>
 					<%
 				}
 				%>
@@ -65,23 +65,23 @@ int total = dto.GetTotal();
 	
 	<div class="icons">
 		<div class="wrap">
-			<a class="icon" href="study.jsp?kinds=1">
+			<a class="icon" href="./main/study.jsp?kinds=1">
 				<img alt="How To" src="./img/icon_how.png">
 				<p>How To</p>
 			</a>
-			<a class="icon" href="study.jsp?kinds=3">
+			<a class="icon" href="./main/study.jsp?kinds=3">
 				<img alt="How To" src="./img/icon_ref.png">
 				<p>Ref</p>
 			</a>
-			<a class="icon" href="study.jsp?kinds=4">
+			<a class="icon" href="./main/study.jsp?kinds=4">
 				<img alt="How To" src="./img/icon_tip.png">
 				<p>Tip</p>
 			</a>
-			<a class="icon" href="study.jsp?kinds=9">
+			<a class="icon" href="./main/study.jsp?kinds=9">
 				<img alt="How To" src="./img/icon_qa.png">
 				<p>Q&A</p>
 			</a>
-			<a class="icon" href="study.jsp?kinds=0">
+			<a class="icon" href="./main/study.jsp?kinds=0">
 				<img alt="How To" src="./img/icon_notice.png">
 				<p>Notice</p>
 			</a>
@@ -93,7 +93,7 @@ int total = dto.GetTotal();
 			<div class="text">
 				<h3>With Us</h3>
 				<p>마음에 드는 스터디를 찾아 함께 해보세요 :)</p>
-				<a href="study.jsp?kinds=1">더 보기 ></a>
+				<a href="./main/study.jsp?kinds=1">더 보기 ></a>
 			</div>
 			<div>
 				<a id="before_btn" class="before_btn" href="javscript:PrevItem();"></a>
@@ -107,7 +107,7 @@ int total = dto.GetTotal();
 						BoardVO vo = dto.GetItem(i);
 						%>
 						<li class="item">
-							<a href="view.jsp?<%= search.GetViewLink(vo.getNo()) %>">
+							<a href="./main/view.jsp?<%= search.GetViewLink(vo.getBno()) %>">
 								<div class="thumb <%= vo.getLang() %>"></div>
 								<p><%= vo.getTitle() %></p>
 							</a>

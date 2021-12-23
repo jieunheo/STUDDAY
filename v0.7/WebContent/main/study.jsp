@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <%
 SearchVO search = new SearchVO();
 search.setKinds(request.getParameter("kinds"));
@@ -16,7 +16,7 @@ int total = dto.GetTotal();
 	window.onload = function() {
 		$.ajax({
 			type: "get",
-			url: "board.jsp?kinds=<%= search.GetPageLink(search.getCurpage()) %>",
+			url: "board.jsp?<%= search.GetPageLink(search.getCurpage()) %>",
 			dataType: "html",
 			success: function(data) {
 				data = data.trim();
@@ -57,4 +57,4 @@ int total = dto.GetTotal();
 		</div>
 	</div>
 </div>
-<%@ include file="./include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

@@ -196,7 +196,7 @@ public class ListDTO extends DBManager
 	public ArrayList<BoardVO> GetListArray()
 	{
 		return this.list;
-	}	
+	}
 }
 
 

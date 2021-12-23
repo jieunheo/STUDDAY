@@ -57,19 +57,20 @@ public class BoardVO
 	public void setAttach(int attach)             { this.attach = attach;           }
 	
 	/* getter */
-	public String getBno()        { return bno;         }
-	public String getNo()         { return no;          }
-	public String getNickname()   { return nickname;    }
-	public String getKinds()      { return kinds;       }
-	public String getTitle()      { return title;       }
-	public String getPost()       { return post;        }
-	public String getDate()       { return date;        }
-	public String getLang()       { return lang;        }
-	public String getStartDate()  { return start_date;  }
-	public String getEndDate()    { return end_date;    }
-	public int    getViews()      { return views;       }
-	public int    getReplyCount() { return reply_count; }
-	public int    getAttach()     { return attach;      }
+	public String getBno()        { return bno;               }
+	public String getNo()         { return no;                }
+	public String getNickname()   { return nickname;          }
+	public String getKinds()      { return kinds;             }
+	public String getTitle()      { return title;             }
+	public String getPost()       { return post;              }
+	public String getDate()       { return date;              }
+	public String getLang()       { return lang;              }
+	public String getStartDate()  { return start_date;        }
+	public String getEndDate()    { return end_date;          }
+	public int    getViews()      { return views;             }
+	public int    getReplyCount() { return reply_count;       }
+	public int    getAttach()     { return attach;            }
+	public String getToday()      { return sdf.format(today); }
 	
 	public String getLangName() {
 		if(lang.equals("java")) return "JAVA";
@@ -84,7 +85,7 @@ public class BoardVO
 		else             return "";
 	}
 	
-	public String GetStudyState(BoardVO vo)
+	public String GetStudyState()
 	{
 		//시작날짜와 끝날짜를 Date로 변환
 		sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -96,8 +97,8 @@ public class BoardVO
 		try
 		{
 			int end_time = (24*60*60*1000)-1000; //해당 날짜의 23시59분59초
-			Date s_date  = new Date(sdf.parse(vo.getStartDate()).getTime());
-			Date e_date  = new Date(sdf.parse(vo.getEndDate()).getTime()+end_time);
+			Date s_date  = new Date(sdf.parse(getStartDate()).getTime());
+			Date e_date  = new Date(sdf.parse(getEndDate()).getTime()+end_time);
 			
 			//오늘 날짜와 비교
 			if (today.getTime() < s_date.getTime())

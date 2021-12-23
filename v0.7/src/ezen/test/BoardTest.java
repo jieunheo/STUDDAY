@@ -46,7 +46,7 @@ public class BoardTest
 		BoardDTO dto = new BoardDTO();
 		
 		vo = dto.Read("315", false);
-		String state = vo.GetStudyState(vo);
+		String state = vo.GetStudyState();
 		System.out.println(state);
 	}
 

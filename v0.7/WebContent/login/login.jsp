@@ -60,7 +60,7 @@ function FormCheck()
 						<p><input id="id" type="text" name="id" placeholder="아이디"></p>
 						<p><input id="pw" type="password" name="pw" placeholder="비밀번호"></p>
 						<p><input class="btn" type="submit" value="로그인"></p>
-						<p><a href="join.jsp">회원가입</a></p>
+						<p><a href="../member/join.jsp">회원가입</a></p>
 					</form>
 				</div>
 			</div>

@@ -41,23 +41,23 @@ UserVO login = (UserVO)session.getAttribute("login");
 				</div>
 				<div class="nav">
 					<ul>
-						<li><a href="/Studday0.6/howto.jsp">How To</a></li>
+						<li><a href="/Studday0.6/main/howto.jsp">How To</a></li>
 						<li>
-							<a href="/Studday0.6/study.jsp">Study</a>
+							<a href="/Studday0.6/main/study.jsp">Study</a>
 							<ul class="sub_nav">
-								<li><a href="/Studday0.6/study.jsp?kinds=1">With Us</a></li>
-								<li><a href="/Studday0.6/study.jsp?kinds=2">Lecture</a></li>
-								<li><a href="/Studday0.6/study.jsp?kinds=3">Reference</a></li>
-								<li><a href="/Studday0.6/study.jsp?kinds=4">Tip</a></li>
-								<li><a href="/Studday0.6/study.jsp?kinds=5">Q&A</a></li>
+								<li><a href="/Studday0.6/main/study.jsp?kinds=1">With Us</a></li>
+								<li><a href="/Studday0.6/main/study.jsp?kinds=2">Lecture</a></li>
+								<li><a href="/Studday0.6/main/study.jsp?kinds=3">Reference</a></li>
+								<li><a href="/Studday0.6/main/study.jsp?kinds=4">Tip</a></li>
+								<li><a href="/Studday0.6/main/study.jsp?kinds=5">Q&A</a></li>
 							</ul>
 						</li>
-						<li><a href="/Studday0.6/study.jsp?kinds=9">Talk</a></li>
+						<li><a href="/Studday0.6/main/study.jsp?kinds=9">Talk</a></li>
 						<li>
-							<a href="/Studday0.6/study.jsp?kinds=0">Contact</a>
+							<a href="/Studday0.6/main/study.jsp?kinds=0">Contact</a>
 							<ul class="sub_nav">
-								<li><a href="/Studday0.6/study.jsp?kinds=0">Notice</a></li>
-								<li><a href="/Studday0.6/request.jsp">Request</a></li>
+								<li><a href="/Studday0.6/main/study.jsp?kinds=0">Notice</a></li>
+								<li><a href="/Studday0.6/main/request.jsp">Request</a></li>
 							</ul>
 						</li>
 					</ul>

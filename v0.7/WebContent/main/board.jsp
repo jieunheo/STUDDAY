@@ -4,7 +4,7 @@
 <%@ page import="ezen.dto.*" %>
 <%@ page import="ezen.dbms.*" %>
 <%@ page import="ezen.util.*" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
 <%
 UserVO login = (UserVO)session.getAttribute("login");	//로그인정보
@@ -125,7 +125,7 @@ ListStateVO list_state = new ListStateVO(search.getKinds());
 	link = pager.getPrevBlock();
 	if( link != null )
 	{
-		%><li><a href="study.jsp?<%= link %>"> 이전 페이지 </a></li><%
+		%><li><a href="study.jsp?<%= link %>"> ◀  </a></li><%
 	}	
 	
 	for(int x = pager.getStartBlock(); x <= pager.getEndBlock(); x++)
@@ -137,7 +137,7 @@ ListStateVO list_state = new ListStateVO(search.getKinds());
 	link = pager.getNextBlock();
 	if( link != null)
 	{
-		%><li><a href="study.jsp?<%= link %>"> 다음 페이지 </a></li><%
+		%><li><a href="study.jsp?<%= link %>"> ▶  </a></li><%
 	}			
 	%>
 	</ul>

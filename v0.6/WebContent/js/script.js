@@ -164,10 +164,10 @@ function MailCheck() {
 				if(data == 01)
 				{
 					alert('성공적으로 전송되었습니다.');
-				} else {
+				} else
+				{
 					alert('Opss! 전송이 안되었어요!');
 				}
-				
 				$('#title').val('');
 				$('#body').val('');
 			}

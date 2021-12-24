@@ -37,8 +37,4 @@ dbms.RunSQL(sql);
 //해당 세션 지우기
 session.removeAttribute("login");
 %>
-<script>
-	alert('탈퇴했습니다. 감사합니다 :)');
-	window.location = "index.jsp";
-</script>
 <%@ include file="./config/dbclose.jsp"%>

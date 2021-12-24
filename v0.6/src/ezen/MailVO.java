@@ -3,12 +3,12 @@ package ezen;
 public class MailVO {
 	MailSender send = null;
 	
-	private String from_mail;  //ë³´ë‚´ëŠ” ì£¼ì†Œ
-	private String to_mail;    //ë°›ëŠ” ì£¼ì†Œ
-	private String id;         //ë³´ë‚´ëŠ” ì•„ì´ë””
-	private String pw;         //ë³´ë‚´ëŠ” ë¹„ë°€ë²ˆí˜¸
-	private String mail_title; //ë©”ì¼ ì œëª©
-	private String mail_body;  //ë©”ì¼ ë‚´ìš©
+	private String from_mail;  //º¸³»´Â ÁÖ¼Ò
+	private String to_mail;    //¹Ş´Â ÁÖ¼Ò
+	private String id;         //º¸³»´Â ¾ÆÀÌµğ
+	private String pw;         //º¸³»´Â ºñ¹Ğ¹øÈ£
+	private String mail_title; //¸ŞÀÏ Á¦¸ñ
+	private String mail_body;  //¸ŞÀÏ ³»¿ë
 	
 	public MailVO(){
 		setFrom_mail("gjekdmlwl@gamil.com");

@@ -5,11 +5,10 @@
 <%@ include file="./include/header.jsp" %>
 <%
 //값 받아오기
-String cur_page   = request.getParameter("page");  //페이지번호
-String kinds      = request.getParameter("kinds"); //게시물종류
-String key        = request.getParameter("key");   //검색어
-
-String bno 	      = request.getParameter("bno");   //게시물번호
+String bno 	     = request.getParameter("bno");   //게시물번호
+String cur_page  = request.getParameter("page");  //페이지번호
+String kinds     = request.getParameter("kinds"); //게시물종류
+String key       = request.getParameter("key");   //검색어
 String no         = "";	//작성자번호
 String nickname   = "";	//작성자닉네임
 String title      = "";	//제목
@@ -171,9 +170,6 @@ if(kinds.equals("3") || kinds.equals("0"))
 							<%
 							if(strfilter != 0)
 							{
-								if(lang.equals("java"))lang = "Java";
-								if(lang.equals("sql"))lang = "SQL";
-								if(lang.equals("js"))lang = "Javascript";
 								%>
 								<p><span>언어 </span><%= lang %></p>
 								<%

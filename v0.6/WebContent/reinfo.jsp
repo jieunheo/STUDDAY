@@ -100,6 +100,9 @@ if(homepage == null) homepage = "";
 					{
 						alert('탈퇴할 수 없는 회원입니다.');
 						return false;
+					} else {
+						alert('탈퇴 되었습니다.');
+						document.location = "index.jsp";
 					}
 				}
 			});

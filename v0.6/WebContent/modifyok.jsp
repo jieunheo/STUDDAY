@@ -92,8 +92,6 @@ if(strfilter != 0)
 		
 		date_set += ",start_date = '" + start_date + "'";
 		date_set += ",end_date = '" + end_date + "' ";
-
-		sql += date_set;
 	}
 }
 sql += "where bno = '" + bno + "' ";

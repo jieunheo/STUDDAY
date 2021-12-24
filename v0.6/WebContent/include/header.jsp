@@ -3,7 +3,8 @@
 <!-- dbms 열기 -->
 <%@ include file="../config/dbopen.jsp" %>
 <%
-	LoginVO login = (LoginVO)session.getAttribute("login");	//로그인정보
+LoginVO login = (LoginVO)session.getAttribute("login");
+
 %>
 <!DOCTYPE html>
 <html>

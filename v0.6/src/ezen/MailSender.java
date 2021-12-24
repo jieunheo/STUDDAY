@@ -13,22 +13,22 @@ import javax.mail.internet.MimeMessage;
 public class MailSender 
 {
 	public boolean MailSend(String from,String to,String id,String pw,String title,String body)
-	{ //					              ë°›ëŠ” ë©”ì¼          ë³´ë‚´ëŠ” ë©”ì¼          ì•„ì´ë””             ë¹„ë°€ë²ˆí˜¸               ì œëª©                       ë‚´ìš©
+	{ //					              ¹Ş´Â ¸ŞÀÏ          º¸³»´Â ¸ŞÀÏ          ¾ÆÀÌµğ             ºñ¹Ğ¹øÈ£               Á¦¸ñ                       ³»¿ë
 		try
 		{  
 			System.out.println("send stage 01");
 			
 			Properties clsProp = System.getProperties();
 			
-			// ë©”ì¼ ì„œë²„ ì£¼ì†Œ
+			// ¸ŞÀÏ ¼­¹ö ÁÖ¼Ò
 			clsProp.put( "mail.smtp.host", "smtp.gmail.com" );
 			
-			// ë©”ì¼ ì„œë²„ í¬íŠ¸ ë²ˆí˜¸
+			// ¸ŞÀÏ ¼­¹ö Æ÷Æ® ¹øÈ£
 			clsProp.put( "mail.smtp.port", 465 );			
 			
 			System.out.println("send stage 02");
 			
-			// ì¸ì¦ì´ í•„ìš”í•˜ë©´ ì•„ë˜ì™€ ê°™ì´ ì„¤ì •í•œë‹¤.
+			// ÀÎÁõÀÌ ÇÊ¿äÇÏ¸é ¾Æ·¡¿Í °°ÀÌ ¼³Á¤ÇÑ´Ù.
 			clsProp.put("mail.smtp.auth", "true"); 
 			clsProp.put("mail.smtp.ssl.enable", "true"); 
 			clsProp.put("mail.smtp.ssl.trust", "smtp.gmail.com");			
@@ -38,7 +38,7 @@ public class MailSender
 			Session clsSession = Session.getInstance( clsProp, new Authenticator(){
 					public PasswordAuthentication getPasswordAuthentication()
 					{
-						// ì¸ì¦ ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ë¥¼ ì €ì¥í•œë‹¤.
+						// ÀÎÁõ ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£¸¦ ÀúÀåÇÑ´Ù.
 						return new PasswordAuthentication( id, pw );
 					}
 				} );
@@ -47,25 +47,25 @@ public class MailSender
 			
 			Message clsMessage = new MimeMessage( clsSession );
 			
-			// ë°œì‹ ì ì´ë©”ì¼ ì£¼ì†Œë¥¼ ì„¤ì •í•œë‹¤.
+			// ¹ß½ÅÀÚ ÀÌ¸ŞÀÏ ÁÖ¼Ò¸¦ ¼³Á¤ÇÑ´Ù.
 			clsMessage.setFrom( new InternetAddress( from ) );
 			
 			System.out.println("send stage 05");
 			
-			// ìˆ˜ì‹ ì ì´ë©”ì¼ ì£¼ì†Œë¥¼ ì„¤ì •í•œë‹¤.
+			// ¼ö½ÅÀÚ ÀÌ¸ŞÀÏ ÁÖ¼Ò¸¦ ¼³Á¤ÇÑ´Ù.
 			clsMessage.addRecipient( Message.RecipientType.TO, new InternetAddress( to ) );
 			
 			System.out.println("send stage 06");
 			
-			// ì œëª©ì„ ì €ì¥í•œë‹¤.
+			// Á¦¸ñÀ» ÀúÀåÇÑ´Ù.
 			clsMessage.setSubject( title );
 			
-			// ë©”ì¼ ë‚´ìš©ì„ ì €ì¥í•œë‹¤. ì†ŒìŠ¤ ì½”ë“œë¥¼ euc-kr ë¡œ ì‘ì„±í•˜ì—¬ì„œ charset ì„ euckr ë¡œ ì„¤ì •í•¨.
+			// ¸ŞÀÏ ³»¿ëÀ» ÀúÀåÇÑ´Ù. ¼Ò½º ÄÚµå¸¦ euc-kr ·Î ÀÛ¼ºÇÏ¿©¼­ charset À» euckr ·Î ¼³Á¤ÇÔ.
 			clsMessage.setContent( body , "text/plain;charset=euckr" );
 			
 			System.out.println("send stage 07");
 			
-			// ë©”ì¼ ì „ì†¡
+			// ¸ŞÀÏ Àü¼Û
 			Transport.send( clsMessage );
 			
 			System.out.println("send stage 08");
@@ -85,17 +85,17 @@ public class MailSender
 		m.MailSend("gjekdmlwl@gmail.com", 
 				"gjekdmlwl@gmail.com",
 				"gjekdmlwl@gmail.com","hajin1121!",
-				"ì œëª©!!","ë‚´ìš©!!!");
+				"Á¦¸ñ!!","³»¿ë!!!");
 		*/
 		
 		
-		//MailSender í´ë˜ìŠ¤ë¥¼ ì•„ë˜ì™€ ê°™ì´ êµ¬ì¡°ë¥¼ ë³€ê²½í•˜ì—¬ ê³ ì³ ì“¸ê²ƒ!!!!!!!!!!
+		//MailSender Å¬·¡½º¸¦ ¾Æ·¡¿Í °°ÀÌ ±¸Á¶¸¦ º¯°æÇÏ¿© °íÃÄ ¾µ°Í!!!!!!!!!!
 		/*
 		MailSender send = new MailSender();
-		send.setFrom("test@naver.com","ë¹„ë²ˆ");
+		send.setFrom("test@naver.com","ºñ¹ø");
 		send.setTo("test@gmail.com");
-		send.setTitle("ì´ê²ƒì€ ì œëª©ì…ë‹ˆë‹¤.");
-		send.setBody("<a href='autho.jsp?id=121212'>ì¸ì¦í•˜ê¸°</a>");
+		send.setTitle("ÀÌ°ÍÀº Á¦¸ñÀÔ´Ï´Ù.");
+		send.setBody("<a href='autho.jsp?id=121212'>ÀÎÁõÇÏ±â</a>");
 		send.sendMail();	
 		*/	
 	}

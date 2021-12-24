@@ -23,6 +23,7 @@ String no          = ""; //작성자번호
 String nickname    = ""; //작성자닉네임
 String kinds       = request.getParameter("kinds"); //게시물종류
 String key         = request.getParameter("key"); //검색
+if(key == null) key = "";
 String title       = ""; //제목
 String post        = ""; //내용
 String lang        = ""; //언어
@@ -253,7 +254,7 @@ if (end_block >= max_page)
 </table>
 <div class="table_btn_wrap">
 	<form class="search" name="search" method="get" action="">
-		<input id="key" type="text" name="key" value="">
+		<input id="key" type="text" name="key" value="<%= key %>">
 		<input class="btn" type="submit" value="검색">
 		<%
 		if(login != null)

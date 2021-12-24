@@ -111,47 +111,32 @@ dbms.OpenQuery(sql);
 				<p>마음에 드는 스터디를 찾아 함께 해보세요 :)</p>
 				<a href="study.jsp?kinds=1">더 보기 ></a>
 			</div>
-			<%
-			//withus의 최근 게시글 8개 불러오기
-			if(dbms.GetNext())
-			{
-			%>
-				<div>
-					<a id="before_btn" class="before_btn" href="javscript:PrevItem();"></a>
-					<div class="overflow">
-						<ul id="items" class="items">
-							<%
-							do
-							{
-								bno   = dbms.GetValue("bno");
-								title = dbms.GetValue("title");
-								lang  = dbms.GetValue("lang");
-								
-								%>
-								<li class="item">
-									<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
-										<div class="thumb <%= lang %>"></div>
-										<p><%= title %></p>
-									</a>
-								</li>
-								<%
-							}while (dbms.GetNext());
+			<div>
+				<a id="before_btn" class="before_btn" href="javscript:PrevItem();"></a>
+				<div class="overflow">
+					<ul id="items" class="items">
+						<%
+						//withus의 최근 게시글 8개 불러오기
+						while (dbms.GetNext())
+						{
+							bno      = dbms.GetValue("bno");
+							title    = dbms.GetValue("title");
+							lang     = dbms.GetValue("lang");
+							
 							%>
-						</ul>
-					</div>
-					<a id="after_btn" class="after_btn" href="javscript:NextItem();"></a>
+							<li class="item">
+								<a href="view.jsp?kinds=1&page=1&key=<%= key %>&bno=<%= bno %>">
+									<div class="thumb <%= lang %>"></div>
+									<p><%= title %></p>
+								</a>
+							</li>
+							<%
+						}
+						%>
+					</ul>
 				</div>
-				<%
-				} else
-				{
-					%>
-					<div class="none_item">
-						<p>앗! 모집중인 스터디가 없네요 :(</p>
-						<a class="btn" href="<%if(login == null){%>login.jsp<%}else{%>write.jsp?kinds=1<%}%>">스터디 만들러 가기</a>
-					</div>
-					<%
-				}
-			%>
+				<a id="after_btn" class="after_btn" href="javscript:NextItem();"></a>
+			</div>
 		</div>
 	</div>
 	

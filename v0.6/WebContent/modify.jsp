@@ -161,48 +161,50 @@ if(kinds.equals("3") || kinds.equals("0"))
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 <script>
-	window.onload = function()
+window.onload = function()
+{
+	document.write.title.focus();
+	
+	//달력
+	StartDate();
+	EndDate();
+}
+
+function OnFocus(value)
+{
+	value.focus();
+}
+
+function FormCheck()
+{
+	if(document.write.title.value == "")
 	{
-		document.write.title.focus();
-		StartDate();
-		EndDate();
+		alert('제목을 입력해주세요.');
+		OnFocus(document.write.title);
+		return false;
 	}
 	
-	function OnFocus(value)
+	if(document.write.start_date.value == "")
 	{
-		value.focus();
+		alert('스터디 시작 날짜를 입력해주세요.');
+		OnFocus(document.write.start_date);
+		return false;
 	}
 	
-	function FormCheck()
+	if(document.write.end_date.value == "")
 	{
-		if(document.write.title.value == "")
-		{
-			alert('제목을 입력해주세요.');
-			OnFocus(document.write.title);
-			return false;
-		}
-		
-		if(document.write.start_date.value == "")
-		{
-			alert('스터디 시작 날짜를 입력해주세요.');
-			OnFocus(document.write.start_date);
-			return false;
-		}
-		
-		if(document.write.end_date.value == "")
-		{
-			alert('스터디 끝 날짜를 입력해주세요.');
-			OnFocus(document.write.end_date);
-			return false;
-		}
-		
-		if(document.write.post.value == "")
-		{
-			alert('스터디 설명을 입력해주세요.');
-			OnFocus(document.write.post);
-			return false;
-		}
+		alert('스터디 끝 날짜를 입력해주세요.');
+		OnFocus(document.write.end_date);
+		return false;
 	}
+	
+	if(document.write.post.value == "")
+	{
+		alert('스터디 설명을 입력해주세요.');
+		OnFocus(document.write.post);
+		return false;
+	}
+}
 </script>
 <div class="main">
 	<div class="wrap">

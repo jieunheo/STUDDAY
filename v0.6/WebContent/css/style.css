@@ -476,6 +476,10 @@ h2 {
 	margin-bottom: 40px;
 }
 
+.request .btn:hover {
+	background: #0973BA;
+}
+
 .form {
 	max-width: 850px;
 	margin: 0 auto 100px;

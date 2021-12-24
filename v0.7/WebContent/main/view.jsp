@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page errorPage="/Studdat0.6/error/error.jsp" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.*" %>
 <%@ include file="../include/header.jsp" %>
@@ -12,7 +13,8 @@ search.setSortorder(request.getParameter("ob"));
 search.setCurpage(request.getParameter("page"));
 
 String bno = request.getParameter("bno");
-ListDTO dto = new ListDTO(search);
+BoardDTO dto = new BoardDTO();
+BoardVO vo = dto.Read(bno, true);
 
 ListStateVO list_state = new ListStateVO(search.getKinds());
 

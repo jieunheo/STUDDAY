@@ -110,6 +110,7 @@ public class BoardDTO extends DBManager
 		}
 		
 		//게시물의 정보를 얻는다.
+		sql = "";
 		sql += "select bno,b.no,kinds,title,post,lang,date,views,";
 		sql += "date(start_date) as start_date,date(end_date) as end_date, ";
 		sql += "u.id,u.nickname,u.user_rank ";
